@@ -7,7 +7,7 @@ Serial.begin(9600);
 Wire.begin();
 sensor.init();
 
-sensor.setTimeout(100);
+sensor.setTimeout(500);
 sensor.startContinuous();
 
 }
@@ -16,7 +16,7 @@ void loop(){
     Serial.print("Distance: ");
     Serial.print(distance);
     Serial.print("mm");
-    if (sensor.timeoutOccurred()) { Serial.print(0); }
+    if (sensor.timeoutOccurred()) { Serial.print(" TIMEOUT"); }
     Serial.println();
     delay(100);
 }
