@@ -7,7 +7,7 @@ VL53L0X sensor;
 void setup()
 {
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   Wire.begin();
   sensor.init();
   sensor.setTimeout(500);
@@ -19,9 +19,6 @@ void setup()
 void loop()
 {
   int distance = sensor.readRangeContinuousMillimeters();
-  //int distance =sensor.startContinuous(100);
-  
- //distance = distance;
   
   Serial.print("Distance: ");
   Serial.print(distance);
@@ -36,5 +33,5 @@ void loop()
   }
 
   Serial.println();
-  delay(100);
+  delay(1);
 }
