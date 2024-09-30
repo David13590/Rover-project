@@ -7,12 +7,12 @@ VL53L0X sensor;
 #define motorFL2 18
 
 //Forreste højre motor
-#define motorFR1 12 
-#define motorFR2 13
+#define motorFR1 2 
+#define motorFR2 4
 
 #define LED 17
 
-int pins[] = {17}; //Pins der skal sættes som output
+int pins[] = {LED, motorFL1, motorFL2, motorFR1, motorFR2}; //Pins der skal sættes som output
 int motorSpeeds[] = {0, 120, 160, 255};
 
 void setup()
@@ -24,9 +24,13 @@ void setup()
   sensor.setTimeout(500);
   sensor.startContinuous();
 
-  pinMode(LED, OUTPUT);
-  pinMode(motorFL1, OUTPUT);
-  pinMode(motorFL2, OUTPUT);
+  int pinArrayLen = sizeof(pins)/sizeof(pins[0]);
+  for(int i; i < pinArrayLen; i++){
+    pinMode(pins[i], OUTPUT);
+    analogWrite(pins[i], 0);
+  }
+
+
 }
 
 void loop()
@@ -40,11 +44,13 @@ void loop()
   
   if (distance <= 400){
     analogWrite(motorFL1, motorSpeeds[3]);
-    digitalWrite(LED, HIGH);
+    analogWrite(motorFR1, motorSpeeds[3]);
+    analogWrite(LED, 255);
   }
   else if (distance > 400){
     analogWrite(motorFL1, motorSpeeds[0]);
-    digitalWrite(LED, LOW);
+    analogWrite(motorFR1, motorSpeeds[0]);
+    analogWrite(LED, 0);
   }
 
   Serial.println();
