@@ -14,8 +14,8 @@
 #define motorBL2 26
 
 //Bagerste højre motor
-#define motorBR1 14
-#define motorBR2 27
+#define motorBR1 27
+#define motorBR2 14
 
 
 void SetLeftMotorsSpeed(int speed);
