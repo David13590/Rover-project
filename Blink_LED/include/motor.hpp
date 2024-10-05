@@ -2,8 +2,8 @@
 #define MOTOR_HPP_
 
 //Forreste venstre motor
-#define motorFL1 4
-#define motorFL2 2
+#define motorFL1 3
+#define motorFL2 19
 
 //Forreste højre motor
 #define motorFR1 5
@@ -21,5 +21,6 @@
 void SetLeftMotorsSpeed(int speed);
 void SetRightMotorsSpeed(int speeds);
 void stopMotors();
+void motorSetup();
 
 #endif

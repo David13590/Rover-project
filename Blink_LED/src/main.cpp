@@ -5,24 +5,28 @@
 #include "sensor.hpp"
 
 
-//Pins der skal sættes som output
-int pins[] = {LED, motorFL1, motorFL2, motorFR1, motorFR2, motorBL1, motorBL2, motorBR1, motorBR2};
-
 void setup(){
-  
+  motorSetup();
   sensorSetup();
-
-  //Finder længden af pins array, sætter pins i array som analog output
-  int pinArrayLen = sizeof(pins)/sizeof(pins[0]);
-  for(int i; i < pinArrayLen; i++){
-    pinMode(pins[i], OUTPUT);
-    analogWrite(pins[i], 0);
-  }
-
+  
 }
 
 void loop(){
-  sensorRead();
+  sensorReturnOutput* mainSensorOutput = sensorRead();
+  int reactDistance = 50; //Distance hvis sensor læser noget under, drej.
+
+  if (mainSensorOutput->sensorDistanceLeft <= reactDistance){
+    //kør langsommere på højre / drej venstre
+    SetLeftMotorsSpeed(3);
+    SetRightMotorsSpeed(1);
+
+    //analogWrite(LED, 255);
+  }
+  else if (mainSensorOutput->sensorDistanceLeft > reactDistance){
+      //Stop
+      stopMotors();
+      //analogWrite(LED, 0);
+  } 
 
   Serial.println();
   delay(1);

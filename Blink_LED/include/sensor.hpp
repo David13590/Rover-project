@@ -5,7 +5,12 @@
 #define XshutSensor1 15
 #define XshutSensor2 33
 
+struct sensorReturnOutput{
+    int sensorDistanceLeft;
+    int sensorDistanceRight;
+};
+
 void sensorSetup();
-void sensorRead();
+sensorReturnOutput* sensorRead();
 
 #endif
