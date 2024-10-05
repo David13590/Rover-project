@@ -2,7 +2,7 @@
 #include "motor.hpp"
 
 
-int motorSpeeds[] = {0, 150, 190, 255};
+int motorSpeeds[] = {0, 170, 200, 255};
 
 void SetLeftMotorsSpeed(int speed){ //hastighed 0 1 2 eller 3 fra motorSpeeds array
     analogWrite(motorFL1, motorSpeeds[speed]);

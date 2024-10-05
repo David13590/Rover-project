@@ -2,31 +2,47 @@
 #include <Wire.h>
 #include <VL53L0X.h>
 #include "motor.hpp"
-#include "decision.hpp"
+#include "sensor.hpp"
 
+VL53L0X sensor;
+VL53L0X sensor2;
 
+void sensorSetup(){
+    
+    
+    
+    Wire.begin();
+    
+    
+    sensor.init();
+    sensor.setTimeout(500);
+    
+    
+    
+    
+    sensor.startContinuous();
+    
+}
 
-void decision(){
-
+void sensorRead(){
     int reactDistance = 50; //Distance hvis sensor læser noget under, drej.
-    int distance = sensor.readRangeContinuousMillimeters();
+    int distanceLeft = sensor.readRangeContinuousMillimeters();
     
     Serial.print("Distance: ");
-    Serial.print(distance);
+    Serial.print(distanceLeft);
     Serial.print("mm ");
     
-    if (distance <= reactDistance){
+    if (distanceLeft <= reactDistance){
     //kør langsommere på højre / drej venstre
     SetLeftMotorsSpeed(3);
     SetRightMotorsSpeed(1);
 
     analogWrite(LED, 255);
     }
-    else if (distance > reactDistance){
+    else if (distanceLeft > reactDistance){
         //Stop
         stopMotors();
         analogWrite(LED, 0);
     }
 }
-
 
