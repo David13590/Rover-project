@@ -20,12 +20,10 @@ void loop(){
     SetLeftMotorsSpeed(3);
     SetRightMotorsSpeed(1);
 
-    //analogWrite(LED, 255);
   }
   else if (mainSensorOutput->sensorDistanceLeft > reactDistance){
       //Stop
       stopMotors();
-      //analogWrite(LED, 0);
   } 
 
   Serial.println();
