@@ -9,7 +9,7 @@
 int pins[] = {LED, motorFL1, motorFL2, motorFR1, motorFR2, motorBL1, motorBL2, motorBR1, motorBR2};
 
 void setup(){
-  Serial.begin(115200);
+  
   sensorSetup();
 
   //Finder længden af pins array, sætter pins i array som analog output
