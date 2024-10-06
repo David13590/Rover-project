@@ -13,20 +13,20 @@ void sensorSetup(){
     pinMode(XshutSensor1, OUTPUT);
     pinMode(XshutSensor2, OUTPUT);
 
-    //SLuk alle sensors
+    //Sluk alle sensors
     digitalWrite(XshutSensor1, LOW);//active low
     digitalWrite(XshutSensor2, LOW);
 
     Serial.begin(115200);
     Wire.begin();
     
-    //Sluk sensor1
-    digitalWrite(XshutSensor1, HIGH); //Sluk en efter en og sæt adresse
+    //Tænd sensor1
+    digitalWrite(XshutSensor1, HIGH); //Tænd en efter en og sæt adresse
     delay(150);
     sensor.init(true);
     sensor.setAddress((uint8_t)01); //Ny adresse
 
-    //Sluk sensor2
+    //Tænd sensor2
     digitalWrite(XshutSensor2, HIGH);
     delay(150);
     sensor2.init(true);
@@ -36,11 +36,9 @@ void sensorSetup(){
     sensor2.startContinuous();
     
 }
+
 static sensorReturnOutput mySensorOutput;
 sensorReturnOutput* sensorRead(){
-    
-    
-    
     int distanceLeft = sensor.readRangeContinuousMillimeters();
     int distanceRight = sensor2.readRangeContinuousMillimeters();
 
@@ -51,8 +49,6 @@ sensorReturnOutput* sensorRead(){
     Serial.print("DistanceRight: ");
     Serial.print(distanceRight);
     Serial.print("mm ");
-
-    
 
 mySensorOutput.sensorDistanceLeft = distanceLeft;
 mySensorOutput.sensorDistanceRight = distanceRight;

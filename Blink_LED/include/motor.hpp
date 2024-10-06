@@ -22,5 +22,6 @@ void SetLeftMotorsSpeed(int speed);
 void SetRightMotorsSpeed(int speeds);
 void stopMotors();
 void motorSetup();
+void runMotors();
 
 #endif
