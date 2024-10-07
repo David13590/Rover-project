@@ -16,26 +16,16 @@ decisionReturnPercent* decision(){
     for(int i=3; i>=0; i--){
         if(mainSensorOutput->sensorDistanceLeft < reactDistance[i]){
             myMotorPercent.motorPercentRight = motorPercent[i];
-        }
-        
+        }  
     } 
-    //Venstre motor sæt. Højre sensor
-    if (mainSensorOutput->sensorDistanceRight < reactDistance[0]){
-        myMotorPercent.motorPercentLeft = motorPercent[0];
-    }
-    else if (mainSensorOutput->sensorDistanceRight < reactDistance[1]){
-        myMotorPercent.motorPercentLeft = motorPercent[1];
-    }
-    else if (mainSensorOutput->sensorDistanceRight < reactDistance[2]){
-        myMotorPercent.motorPercentLeft = motorPercent[2];
-    }
-    else if (mainSensorOutput->sensorDistanceRight < reactDistance[3]){
-        myMotorPercent.motorPercentLeft = motorPercent[3];
-    }
-    else {
-        myMotorPercent.motorPercentLeft = motorPercent[4];
-    }
 
+    //Venstre motor sæt. Højre sensor
+    myMotorPercent.motorPercentLeft = motorPercent[4];
+    for(int i=3; i>=0; i--){
+        if(mainSensorOutput->sensorDistanceRight < reactDistance[i]){
+            myMotorPercent.motorPercentLeft = motorPercent[i];
+        }
+    }
 
     //Debug stop
     if (mainSensorOutput->sensorDistanceLeft > 1000){
