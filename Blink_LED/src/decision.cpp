@@ -12,44 +12,25 @@ decisionReturnPercent* decision(){
     int motorPercent[] = {0, 25, 50, 75, 100};
 
     //Højre motorsæt. Venstre sensor styre højre motorsæt
-    if (mainSensorOutput->sensorDistanceLeft < reactDistance[0]){
-        myMotorPercent.motorPercentRight = motorPercent[0];
-    }
-    else if (mainSensorOutput->sensorDistanceLeft < reactDistance[1]){
-        myMotorPercent.motorPercentRight = motorPercent[1];
-    }
-    else if (mainSensorOutput->sensorDistanceLeft < reactDistance[2]){
-        myMotorPercent.motorPercentRight = motorPercent[2];
-    }
-    else if (mainSensorOutput->sensorDistanceLeft < reactDistance[3]){
-        myMotorPercent.motorPercentRight = motorPercent[3];
-    }
-    else {
-        myMotorPercent.motorPercentRight = motorPercent[4];
-    }
+    myMotorPercent.motorPercentRight = motorPercent[4];
+    for(int i=3; i>=0; i--){
+        if(mainSensorOutput->sensorDistanceLeft < reactDistance[i]){
+            myMotorPercent.motorPercentRight = motorPercent[i];
+        }  
+    } 
 
     //Venstre motor sæt. Højre sensor
-    if (mainSensorOutput->sensorDistanceRight < reactDistance[0]){
-        myMotorPercent.motorPercentLeft = motorPercent[0];
+    myMotorPercent.motorPercentLeft = motorPercent[4];
+    for(int i=3; i>=0; i--){
+        if(mainSensorOutput->sensorDistanceRight < reactDistance[i]){
+            myMotorPercent.motorPercentLeft = motorPercent[i];
+        }
     }
-    else if (mainSensorOutput->sensorDistanceRight < reactDistance[1]){
-        myMotorPercent.motorPercentLeft = motorPercent[1];
-    }
-    else if (mainSensorOutput->sensorDistanceRight < reactDistance[2]){
-        myMotorPercent.motorPercentLeft = motorPercent[2];
-    }
-    else if (mainSensorOutput->sensorDistanceRight < reactDistance[3]){
-        myMotorPercent.motorPercentLeft = motorPercent[3];
-    }
-    else {
-        myMotorPercent.motorPercentLeft = motorPercent[4];
-    }
-
 
     //Debug stop
     if (mainSensorOutput->sensorDistanceLeft > 1000){
         myMotorPercent.motorPercentRight = motorPercent[0];
-        myMotorPercent.motorPercentLeft = motorPercent[0];
+         myMotorPercent.motorPercentLeft = motorPercent[0];
     }
 
     return &myMotorPercent;
