@@ -14,7 +14,7 @@ void setup(){
   pinMode(xshut2, OUTPUT);
 
   //Turn off sensors
-  digitalWrite(xshut1, LOW);
+  digitalWrite(xshut1, LOW); //xshut is actvie low
   digitalWrite(xshut2, LOW);
 
 

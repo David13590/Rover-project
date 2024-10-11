@@ -12,7 +12,39 @@ void motorSetup(){
         pinMode(motorPins[i], OUTPUT);
         analogWrite(motorPins[i], 0);
     }
+
+    
 }
+
+//Motor check for at se om motore virker og sidder rigtigt.
+void motorCheck(){
+    Serial.print("Running motor check. Stand by.\n");
+    delay(2000);
+
+    Serial.print("--Front Left--\n");
+    analogWrite(motorFL1, 255);
+    delay(2000);
+    analogWrite(motorFL1, 0);
+
+    Serial.print("--Front Right--\n");
+    analogWrite(motorFR1, 255);
+    delay(2000);
+    analogWrite(motorFR1, 0);
+
+    Serial.print("--Back Left--\n");
+    analogWrite(motorBL1, 255);
+    delay(2000);
+    analogWrite(motorBL1, 0);
+
+    Serial.print("--Back Right--\n");
+    analogWrite(motorBR1, 255);
+    delay(1000);
+    analogWrite(motorBL1, 0);
+
+    Serial.print("Motor check complete.");
+    delay(2000);
+}
+
   //decision percent 0, 25,  50,  75,  100   
 int motorSpeeds[] = {0, 160, 180, 200, 255};
 void SetLeftMotorsSpeed(int speed){ //hastighed 0 1 2 eller 3 fra motorSpeeds array

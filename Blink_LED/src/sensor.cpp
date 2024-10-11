@@ -8,7 +8,7 @@ VL53L0X sensor;
 VL53L0X sensor2;
 
 void sensorSetup(){
-    
+    Serial.print("Running sensor setup. Stand by.\n");
     
     pinMode(XshutSensor1, OUTPUT);
     pinMode(XshutSensor2, OUTPUT);
@@ -34,6 +34,8 @@ void sensorSetup(){
 
     sensor.startContinuous();
     sensor2.startContinuous();
+
+    Serial.print("Sensor setup complete. \n");
     
 }
 

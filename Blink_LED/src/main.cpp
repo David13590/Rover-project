@@ -9,6 +9,7 @@
 void setup(){
   motorSetup();
   sensorSetup();
+  motorCheck();
   
 }
 
