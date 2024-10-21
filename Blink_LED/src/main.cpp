@@ -8,20 +8,20 @@
 
 
 void setup(){
-  motorSetup();
   sensorSetup();
+  buttonOnOffSetup();
+  motorSetup();
   //motorCheck();
   
 }
 
 void loop(){
-  while (buttonOnOff){
+  if(buttonOnOff() == true){
     //decision();
     runMotors();
     Serial.println();
     delay(1);
   }
-    
 
 }
 
