@@ -1,5 +1,3 @@
-#include <Arduino.h>
-#include <Wire.h>
 #include <iostream>
 
 struct hbridge
@@ -49,15 +47,11 @@ direction forward = {1, 0, 1, 0};
 direction reverse = {0, 1, 0, 1};
 direction stop = {0, 0, 0, 0};
 
-void setup()
+int main() 
 {
     printMotorPins(leftWheels);
     std::cout << "---" << std::endl;
     printMotorPins(rightWheels);
     std::cout << "---" << std::endl;
     steering(leftWheels, forward);
-}
-
-void loop(){
-
 }
