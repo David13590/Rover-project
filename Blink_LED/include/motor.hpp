@@ -6,16 +6,16 @@
 #define motorFL2 26
 
 //Forreste højre motor
-#define motorFR1 5
-#define motorFR2 18
+#define motorFR1 18
+#define motorFR2 5
 
 //Bagerste venstre motor
 #define motorBL1 27
 #define motorBL2 14
 
 //Bagerste højre motor
-#define motorBR1 3
-#define motorBR2 19
+#define motorBR1 19
+#define motorBR2 3
 
 
 void SetLeftMotorsSpeed(int speed);

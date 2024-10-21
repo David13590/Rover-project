@@ -8,7 +8,7 @@ static decisionReturnPercent myMotorPercent;
 decisionReturnPercent* decision(){
     sensorReturnOutput* mainSensorOutput = sensorRead();
     //procent motor speed  0   25   50   75   100
-    int reactDistance[] = {70, 120, 200, 400, 500}; //Distance hvis sensor læser noget under, drej.
+    int reactDistance[] = {100, 140, 180, 220, 280}; //Distance hvis sensor læser noget under, drej.
     int motorPercent[] = {0, 25, 50, 75, 100};
 
     //Højre motorsæt. Venstre sensor styre højre motorsæt
@@ -28,10 +28,10 @@ decisionReturnPercent* decision(){
     }
 
     //Debug stop
-    if (mainSensorOutput->sensorDistanceLeft > 1000){
-        myMotorPercent.motorPercentRight = motorPercent[0];
-         myMotorPercent.motorPercentLeft = motorPercent[0];
-    }
+    // if (mainSensorOutput->sensorDistanceLeft > 1000){
+    //     myMotorPercent.motorPercentRight = motorPercent[0];
+    //      myMotorPercent.motorPercentLeft = motorPercent[0];
+    // }
 
     return &myMotorPercent;
 
