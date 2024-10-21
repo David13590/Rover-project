@@ -8,6 +8,7 @@ void setup()
   Serial.begin(115200);
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(buttonPin, INPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
 }
  
 
@@ -19,7 +20,8 @@ bool gesture(){
     static int lastTime = 0;
     bool i = digitalRead(buttonPin);
     bool gesture = false;
-    
+    digitalWrite(LED_BUILTIN, i);
+
     if(state == 0){
         if(i == HIGH){
             state = 1;
