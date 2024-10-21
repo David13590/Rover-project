@@ -32,8 +32,8 @@ void sensorSetup(){
     sensor2.init(true);
     sensor2.setAddress((uint8_t)02); 
 
-    sensor.startContinuous();
-    sensor2.startContinuous();
+    sensor.startContinuous(5);
+    sensor2.startContinuous(5);
 
     Serial.print("Sensor setup complete. \n");
     

@@ -42,7 +42,7 @@ void motorCheck(){
     analogWrite(motorBL1, 0);
 
     Serial.print("Motor check complete.");
-    delay(2000);
+    delay(1000);
 }
 
   //decision percent 0, 25,  50,  75,  100   
