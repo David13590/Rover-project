@@ -8,38 +8,36 @@
 
 
 void setup(){
-  sensorSetup();
-  gestureSetup();
-  motorSetup();
-  //motorCheck();
-  
+    sensorSetup();
+    gestureSetup();
+    motorSetup();
+    //motorCheck();  
 }
 
 void loop(){
-  static int state = 0;
-  if(state == 0){
-      if(gesture() == HIGH){
-          state = 1;
-      }
-  }
-  if(state == 1){
-      if(gesture() == HIGH){
-          state = 0;
-      }
-  }
-  
-  Serial.print(state);
-  if(state == 0){
-    stopMotors();
-    delay(1);
-  }
-  if(state == 1){
-    //decision();
-    runMotors();
-    Serial.println();
-    delay(1);
-  }
-
+    enum runState{
+        isStopped,
+        isRunning,
+    };
+    runState myrunState = isStopped;
+    switch(myrunState){
+    case isStopped:
+        if(gesture() == HIGH){
+            stopMotors();
+            delay(1);
+            myrunState = isRunning;
+        }
+        break;
+    case isRunning:
+        if(gesture() == HIGH){
+            //decision();
+            runMotors();
+            Serial.println();
+            delay(1);
+            myrunState = isStopped;
+        }
+        break;
+    }
 }
 
 

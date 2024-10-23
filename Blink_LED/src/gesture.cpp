@@ -17,29 +17,29 @@ bool gesture(){
     bool gesture = false;
     digitalWrite(LED_BUILTIN, senseGesture);
 
-    enum GestureStates{
-        GestureFirstHigh = 0,
-        GestureStillHigh,
-        GestureLow
+    enum gestureStates{
+        gestureFirstHigh = 0,
+        gestureStillHigh,
+        gestureLow
     };
-
-    switch (state){
-    case GestureFirstHigh:
+    gestureStates mystate = gestureFirstHigh;
+    switch (mystate){
+    case gestureFirstHigh:
         if(senseGesture == HIGH){ //Ved første observeing af HIGH, begynd at tag tid med startTime
-            state = 1;
             startTime = millis();
+            mystate = gestureStillHigh;
         }
         break;
-    case GestureStillHigh:
+    case gestureStillHigh:
         if(senseGesture == HIGH){ //Hvis gesture stadig er høj, lastTime bliver gemt
             lastTime = millis();
         }
         if(lastTime - startTime > 200){ //Hvis forskellen mellem lastTime og startTime bliver større end 200ms
             gesture = true;             //så er det en "gesture"
-            state = 2;
+            mystate = gestureLow;
         }
         break;
-    case 2:
+    case gestureLow:
         if(senseGesture == HIGH){ //
             lastTime = millis();
         }
@@ -48,10 +48,10 @@ bool gesture(){
         }
 
         if(endTime - lastTime > 500){ //Når forskellen mellem endTime og lastTime er større end 500ms 
-            state = 0;                //kan man give en ny gesture
+            mystate = gestureFirstHigh;                //kan man give en ny gesture
         }
         break;
     }
-
+    Serial.print(mystate);
     return gesture;   
 }
