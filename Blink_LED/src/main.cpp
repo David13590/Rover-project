@@ -23,20 +23,25 @@ void loop(){
     switch(myrunState){
     case isStopped:
         if(gesture() == HIGH){
-            stopMotors();
-            delay(1);
             myrunState = isRunning;
         }
         break;
     case isRunning:
         if(gesture() == HIGH){
-            //decision();
-            runMotors();
-            Serial.println();
-            delay(1);
             myrunState = isStopped;
         }
         break;
+    }
+
+    if(myrunState = isStopped){
+        stopMotors();
+        delay(1);
+    }
+    if(myrunState = isRunning){
+        //decision();
+        runMotors();
+        Serial.println();
+        delay(1);
     }
 }
 

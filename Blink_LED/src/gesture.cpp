@@ -9,7 +9,6 @@ void gestureSetup(){
 }
  
 bool gesture(){
-    static int state = 0;
     static int startTime = 0;
     static int endTime = 0;
     static int lastTime = 0;
