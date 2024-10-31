@@ -2,7 +2,8 @@
 #include "motor.hpp"
 #include "decision.hpp"
 
-void motorSetup(){
+void motor::motorSetup(){ 
+    
     
     int motorPins[] = {motorFL1, motorFR1, motorFL2, motorFR2, motorBL1, motorBL2, motorBR1, motorBR2};
     
@@ -12,12 +13,10 @@ void motorSetup(){
         pinMode(motorPins[i], OUTPUT);
         analogWrite(motorPins[i], 0);
     }
-
-    
 }
 
 //Motor check for at se om motore virker og sidder rigtigt.
-void motorCheck(){
+void motor::motorCheck(){
     Serial.print("Running motor check. Stand by.\n");
     delay(2000);
 
@@ -47,17 +46,17 @@ void motorCheck(){
 
   //decision percent 0, 25,  50,  75,  100   
 int motorSpeeds[] = {0, 160, 180, 200, 255};
-void SetLeftMotorsSpeed(int speed){ //hastighed 0 1 2 eller 3 fra motorSpeeds array
+void motor::SetLeftMotorsSpeed(int speed){ //hastighed 0 1 2 eller 3 fra motorSpeeds array
     analogWrite(motorFL1, motorSpeeds[speed]);
     analogWrite(motorBL1, motorSpeeds[speed]);
 }
 
-void SetRightMotorsSpeed(int speed){
+void motor::SetRightMotorsSpeed(int speed){
     analogWrite(motorFR1, motorSpeeds[speed]);
     analogWrite(motorBR1, motorSpeeds[speed]);
 }
 
-void stopMotors(){
+void motor::stopMotors(){
     analogWrite(motorFL1, motorSpeeds[0]);
     analogWrite(motorBL1, motorSpeeds[0]);
 
@@ -65,8 +64,8 @@ void stopMotors(){
     analogWrite(motorBR1, motorSpeeds[0]);
 }
 
-void runMotors(){
-    decisionReturnPercent* myMotorPercent = decision();
+void motor::runMotors(){
+    decision::decisionReturnPercent* myMotorPercent = myDecision.get_decision();
 
     //Venstre sensor tæt. Styre højre motor sæt
     if (myMotorPercent->motorPercentLeft == 0){

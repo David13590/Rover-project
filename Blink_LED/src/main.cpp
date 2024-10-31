@@ -5,12 +5,12 @@
 #include "sensor.hpp"
 #include "decision.hpp"
 #include "gesture.hpp"
-
+motor mainMotor;
 
 void setup(){
   sensorSetup();
   gestureSetup();
-  motorSetup();
+  mainMotor.motorSetup();
   //motorCheck();
   
 }
@@ -30,12 +30,12 @@ void loop(){
   
   Serial.print(state);
   if(state == 0){
-    stopMotors();
+    mainMotor.stopMotors();
     delay(1);
   }
   if(state == 1){
     //decision();
-    runMotors();
+    mainMotor.runMotors();
     Serial.println();
     delay(1);
   }

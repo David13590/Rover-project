@@ -4,9 +4,10 @@
 #include "decision.hpp"
 
 
-static decisionReturnPercent myMotorPercent;
-decisionReturnPercent* decision(){
+
+decision::decisionReturnPercent* decision::get_decision(){
     sensorReturnOutput* mainSensorOutput = sensorRead();
+    
     //procent motor speed  0   25   50   75   100
     int reactDistance[] = {100, 140, 180, 220, 280}; //Distance hvis sensor læser noget under, drej.
     int motorPercent[] = {0, 25, 50, 75, 100};

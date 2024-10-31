@@ -1,28 +1,34 @@
 #ifndef MOTOR_HPP_
 #define MOTOR_HPP_
+#include "decision.hpp"
 
-//Forreste venstre motor
-#define motorFL1 25
-#define motorFL2 26
+class motor{
+    private:
+        decision myDecision;
 
-//Forreste højre motor
-#define motorFR1 18
-#define motorFR2 5
+        //Forreste venstre motor
+        #define motorFL1 25
+        #define motorFL2 26
 
-//Bagerste venstre motor
-#define motorBL1 27
-#define motorBL2 14
+        //Forreste højre motor
+        #define motorFR1 18
+        #define motorFR2 5
 
-//Bagerste højre motor
-#define motorBR1 19
-#define motorBR2 3
+        //Bagerste venstre motor
+        #define motorBL1 27
+        #define motorBL2 14
 
+        //Bagerste højre motor
+        #define motorBR1 19
+        #define motorBR2 3
 
-void SetLeftMotorsSpeed(int speed);
-void SetRightMotorsSpeed(int speeds);
-void stopMotors();
-void motorSetup();
-void runMotors();
-void motorCheck();
+    public:
+        void SetLeftMotorsSpeed(int speed);
+        void SetRightMotorsSpeed(int speeds);
+        void stopMotors();
+        void motorSetup();
+        void runMotors();
+        void motorCheck();
 
+};
 #endif
