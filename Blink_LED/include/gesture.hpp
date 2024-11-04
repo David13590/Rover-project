@@ -1,9 +1,12 @@
 #ifndef GESTURE_
 #define GESTURE_
 
-#define buttonPin 17
+class gesture{
+    private:
+        #define buttonPin 17
 
-void gestureSetup();
-bool gesture();
-
+    public:
+        void gestureSetup();
+        bool readGesture();
+};
 #endif

@@ -2,13 +2,13 @@
 #include <Wire.h>
 #include "gesture.hpp"
 
-void gestureSetup(){
+void gesture::gestureSetup(){
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(buttonPin, INPUT);
     digitalWrite(LED_BUILTIN, HIGH);
 }
 
-bool gesture(){
+bool gesture::readGesture(){
     static int state = 0;
     static int startTime = 0;
     static int endTime = 0;

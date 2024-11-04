@@ -6,10 +6,11 @@
 #include "decision.hpp"
 #include "gesture.hpp"
 motor mainMotor;
+gesture mainGesture;
 
 void setup(){
   sensorSetup();
-  gestureSetup();
+  mainGesture.gestureSetup();
   mainMotor.motorSetup();
   //motorCheck();
   
@@ -18,12 +19,12 @@ void setup(){
 void loop(){
   static int state = 0;
   if(state == 0){
-      if(gesture() == HIGH){
+      if(mainGesture.readGesture() == HIGH){
           state = 1;
       }
   }
   if(state == 1){
-      if(gesture() == HIGH){
+      if(mainGesture.readGesture() == HIGH){
           state = 0;
       }
   }
