@@ -1,15 +1,18 @@
 #ifndef SENSOR_HPP_
 #define SENSOR_HPP_
 
-#define XshutSensor1 33
-#define XshutSensor2 15
+class sensorClass{
+    public:
+        struct sensorReturnOutput{
+            int sensorDistanceLeft;
+            int sensorDistanceRight;
+        };
+        void sensorSetup();
+        sensorReturnOutput* sensorRead();
 
-struct sensorReturnOutput{
-    int sensorDistanceLeft;
-    int sensorDistanceRight;
+    private:
+        #define XshutSensor1 33
+        #define XshutSensor2 15
+        sensorReturnOutput mySensorOutput;
 };
-
-void sensorSetup();
-sensorReturnOutput* sensorRead();
-
 #endif

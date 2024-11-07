@@ -1,5 +1,6 @@
 #ifndef DECISION_HPP_
 #define DECISION_HPP_
+#include "sensor.hpp"
 
 class decision{
     public:
@@ -9,6 +10,7 @@ class decision{
         };
         decisionReturnPercent* get_decision();
     private:
+        sensorClass mySensor;
         decisionReturnPercent myMotorPercent;
 };
 #endif

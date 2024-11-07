@@ -7,9 +7,10 @@
 #include "gesture.hpp"
 motor mainMotor;
 gesture mainGesture;
+sensorClass mainSensor;
 
 void setup(){
-  sensorSetup();
+  mainSensor.sensorSetup();
   mainGesture.gestureSetup();
   mainMotor.motorSetup();
   //motorCheck();

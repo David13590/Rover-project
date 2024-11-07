@@ -6,7 +6,7 @@
 
 
 decision::decisionReturnPercent* decision::get_decision(){
-    sensorReturnOutput* mainSensorOutput = sensorRead();
+    sensorClass::sensorReturnOutput* mainSensorOutput = mySensor.sensorRead();
     
     //procent motor speed  0   25   50   75   100
     int reactDistance[] = {100, 140, 180, 220, 280}; //Distance hvis sensor læser noget under, drej.

@@ -7,9 +7,8 @@
 VL53L0X sensor;
 VL53L0X sensor2;
 
-void sensorSetup(){
+void sensorClass::sensorSetup(){
     Serial.print("Running sensor setup. Stand by.\n");
-    
     pinMode(XshutSensor1, OUTPUT);
     pinMode(XshutSensor2, OUTPUT);
 
@@ -34,13 +33,11 @@ void sensorSetup(){
 
     sensor.startContinuous(5);
     sensor2.startContinuous(5);
-
-    Serial.print("Sensor setup complete. \n");
-    
+    Serial.print("Sensor setup complete. \n");  
 }
 
-static sensorReturnOutput mySensorOutput;
-sensorReturnOutput* sensorRead(){
+static sensorClass::sensorReturnOutput mySensorOutput;
+sensorClass::sensorReturnOutput* sensorClass::sensorRead(){
     int distanceLeft = sensor.readRangeContinuousMillimeters();
     int distanceRight = sensor2.readRangeContinuousMillimeters();
 
@@ -57,4 +54,3 @@ mySensorOutput.sensorDistanceRight = distanceRight;
 return &mySensorOutput;
     
 }
-
