@@ -3,12 +3,8 @@
 #include "decision.hpp"
 
 void motor::motorSetup(){ 
-    
-    
     int motorPins[] = {motorFL1, motorFR1, motorFL2, motorFR2, motorBL1, motorBL2, motorBR1, motorBR2};
-    
-    //Finder længden af pins array, sætter pins i array som analog output
-    int motorPinArrayLen = sizeof(motorPins)/sizeof(motorPins[0]);
+    int motorPinArrayLen = sizeof(motorPins)/sizeof(motorPins[0]); //Finder længden af pins array, sætter pins i array som analog output
     for(int i=0; i < motorPinArrayLen; i++){
         pinMode(motorPins[i], OUTPUT);
         analogWrite(motorPins[i], 0);
@@ -84,7 +80,6 @@ void motor::runMotors(){
         SetRightMotorsSpeed(4);// 100 Full speed ahead!!
     } 
 
-    
     //Højre sensor tæt. Styre venstre motor sæt
     if (myMotorPercent->motorPercentRight == 0){
         SetLeftMotorsSpeed(0);
@@ -101,5 +96,4 @@ void motor::runMotors(){
     else if (myMotorPercent->motorPercentRight > 75 && myMotorPercent->motorPercentRight == 100){
         SetLeftMotorsSpeed(4);
     }
-
 }

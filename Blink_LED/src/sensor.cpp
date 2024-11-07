@@ -2,8 +2,6 @@
 #include <Wire.h>
 #include <VL53L0X.h>
 #include "sensor.hpp"
-
-
 VL53L0X sensor;
 VL53L0X sensor2;
 

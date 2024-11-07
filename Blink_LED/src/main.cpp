@@ -14,7 +14,6 @@ void setup(){
   mainGesture.gestureSetup();
   mainMotor.motorSetup();
   //motorCheck();
-  
 }
 
 void loop(){
@@ -41,7 +40,6 @@ void loop(){
     Serial.println();
     delay(1);
   }
-
 }
 
 

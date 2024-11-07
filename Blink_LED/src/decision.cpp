@@ -3,8 +3,6 @@
 #include "sensor.hpp"
 #include "decision.hpp"
 
-
-
 decision::decisionReturnPercent* decision::get_decision(){
     sensorClass::sensorReturnOutput* mainSensorOutput = mySensor.sensorRead();
     
@@ -35,5 +33,4 @@ decision::decisionReturnPercent* decision::get_decision(){
     // }
 
     return &myMotorPercent;
-
 }
