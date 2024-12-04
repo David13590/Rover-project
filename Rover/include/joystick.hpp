@@ -2,18 +2,20 @@
 #define JOYSTICK_HPP_
     
 class joystick{
-    private:
-        const int neutralMin = 1700;
-        const int neutralMax = 2000;
-
     public:
         struct joystickValue{
-            int X;
-            int Y;
+            int x;
+            int y;
+            int button;
         };
-        void setup();
-        joystickValue* get_value(int joyXPin, int joyYPin);
-        
+        joystickValue& get_value();
+        void setup(int xPin, int yPin, int buttonPin);        
+    private:
+        int xPin_private = 000;
+        int yPin_private = 000;
+        int buttonPin_private = 000;
+        const int neutralMin = 1700;
+        const int neutralMax = 2000;
+        joystickValue myjoystickvalue;
 };
-
 #endif

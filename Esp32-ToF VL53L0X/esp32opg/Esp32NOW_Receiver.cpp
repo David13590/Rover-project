@@ -7,8 +7,6 @@
 typedef struct struct_message {
     int x;
     int y;
-    float xvolt;
-    float yvolt;
     bool button;
 } struct_message;
 
