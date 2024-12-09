@@ -22,10 +22,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   Serial.print(" knap: ");
   Serial.println(myJoystickValues.button);
   Serial.print(" joy1x: ");
-  Serial.print(myJoystickValues.xvolt);
-  Serial.print(" xvolt ");
-  Serial.print(myJoystickValues.yvolt);
-  Serial.print(" yvolt ");
+
 }
 
 void setup() {

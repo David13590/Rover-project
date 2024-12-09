@@ -70,7 +70,6 @@ void setup() {
  
 void loop() {
   // Set values to send
-
   joystick::joystickValue myjoystickvalueLeft = joystickLeft.get_value();
   joystick::joystickValue myjoystickvalueRight = joystickRight.get_value();
   myjoystickvalueLeft.x = map(myjoystickvalueLeft.x, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
@@ -92,13 +91,11 @@ void loop() {
   if (result != ESP_OK) {
     Serial.print(", Error sending the data");
   }
-  
   Serial.print("\t joy1x: ");
   Serial.print(channelValue.channel1);
   Serial.print(" joy1y: ");
   Serial.print(channelValue.channel2);
   Serial.print(" knap: ");
   Serial.print(channelValue.channel3);
-
   delay(100);
 }
