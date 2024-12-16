@@ -1,7 +1,7 @@
+#include <Arduino.h>
 #include <esp_now.h>
 #include <WiFi.h>
-#include <Arduino.h>
-#include <Wire.h>
+//#include <Wire.h>
 #include <ezButton.h>
 #include "controllerSender.hpp"
 #include "joystick.hpp"
@@ -95,7 +95,13 @@ void loop() {
   Serial.print(channelValue.channel1);
   Serial.print(" joy1y: ");
   Serial.print(channelValue.channel2);
-  Serial.print(" knap: ");
+  Serial.print(" knap1: ");
   Serial.print(channelValue.channel3);
-  delay(100);
+  Serial.print("\t joy2x: ");
+  Serial.print(channelValue.channel4);
+  Serial.print(" joy2y: ");
+  Serial.print(channelValue.channel5);
+  Serial.print(" knap2: ");
+  Serial.print(channelValue.channel6);
+  delay(50);
 }

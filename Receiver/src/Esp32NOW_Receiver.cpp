@@ -4,30 +4,33 @@
 
 // Structure example to receive data
 // Must match the sender structure
-typedef struct struct_message {
-    int x;
-    int y;
-    float xvolt;
-    float yvolt;
-    bool button;
-} struct_message;
+typedef struct channel_data {
+  int channel1;
+  int channel2;
+  bool channel3;
+  int channel4;
+  int channel5;
+  bool channel6;
+} channel_data;
 
 // Create a struct_message called myData
-struct_message myJoystickValues;
+channel_data channelValue;
 
 // callback function that will be executed when data is received
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
-  memcpy(&myJoystickValues, incomingData, sizeof(myJoystickValues));
-  Serial.print(myJoystickValues.y);
-  Serial.print(" yvolt ");
-  Serial.print(myJoystickValues.yvolt);
-  Serial.print(" knap: ");
-  Serial.println(myJoystickValues.button);
+  memcpy(&channelValue, incomingData, sizeof(channelValue));
   Serial.print(" joy1x: ");
-  Serial.print(myJoystickValues.x);
-  Serial.print(" xvolt ");
-  Serial.print(myJoystickValues.xvolt);
+  Serial.print(channelValue.channel1);
   Serial.print(" joy1y: ");
+  Serial.print(channelValue.channel2);
+  Serial.print(" knap1: ");
+  Serial.print(channelValue.channel3);
+  Serial.print("\t joy2x: ");
+  Serial.print(channelValue.channel4);
+  Serial.print(" joy2y: ");
+  Serial.print(channelValue.channel5);
+  Serial.print(" knap2: ");
+  Serial.println(channelValue.channel6);
 }
 
 void setup() {
