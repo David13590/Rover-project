@@ -4,7 +4,7 @@
 
 void motor::motorSetup(){ 
     int motorPins[] = {motorFL1, motorFR1, motorFL2, motorFR2, motorBL1, motorBL2, motorBR1, motorBR2};
-    int motorPinArrayLen = sizeof(motorPins)/sizeof(motorPins[0]); //Finder længden af pins array, sætter pins i array som analog output
+    int motorPinArrayLen = sizeof(motorPins)/sizeof(motorPins[0]); //Finder længden af pins array, sætter pins i array som output
     for(int i=0; i < motorPinArrayLen; i++){
         pinMode(motorPins[i], OUTPUT);
         analogWrite(motorPins[i], 0);
@@ -67,16 +67,16 @@ void motor::runMotors(){
     if (myMotorPercent->motorPercentLeft == 0){
         SetRightMotorsSpeed(0); // 0 stop højre
     }
-    else if (myMotorPercent->motorPercentLeft > 0 && myMotorPercent->motorPercentLeft < 26){
+    else if (myMotorPercent->motorPercentLeft > 1){
         SetRightMotorsSpeed(1); // 25 procent fart
     }
-    else if (myMotorPercent->motorPercentLeft > 25 && myMotorPercent->motorPercentLeft < 51){
+    else if (myMotorPercent->motorPercentLeft > 25 ){
         SetRightMotorsSpeed(2); // 50
     }
-    else if (myMotorPercent->motorPercentLeft > 50 && myMotorPercent->motorPercentLeft < 76){
+    else if (myMotorPercent->motorPercentLeft > 50){
         SetRightMotorsSpeed(3); // 75
     }
-    else if (myMotorPercent->motorPercentLeft > 75 && myMotorPercent->motorPercentLeft == 100){
+    else if (myMotorPercent->motorPercentLeft > 75){
         SetRightMotorsSpeed(4);// 100 Full speed ahead!!
     } 
 
@@ -84,16 +84,16 @@ void motor::runMotors(){
     if (myMotorPercent->motorPercentRight == 0){
         SetLeftMotorsSpeed(0);
     }
-    else if (myMotorPercent->motorPercentRight > 0 && myMotorPercent->motorPercentRight < 26){
+    else if (myMotorPercent->motorPercentRight > 1){
         SetLeftMotorsSpeed(1);
     }
-    else if (myMotorPercent->motorPercentRight > 25 && myMotorPercent->motorPercentRight < 51){
+    else if (myMotorPercent->motorPercentRight > 25){
         SetLeftMotorsSpeed(2);
     }
-    else if (myMotorPercent->motorPercentRight > 50 && myMotorPercent->motorPercentRight < 76){
+    else if (myMotorPercent->motorPercentRight > 50){
         SetLeftMotorsSpeed(3);
     }
-    else if (myMotorPercent->motorPercentRight > 75 && myMotorPercent->motorPercentRight == 100){
+    else if (myMotorPercent->motorPercentRight > 75){
         SetLeftMotorsSpeed(4);
     }
 }

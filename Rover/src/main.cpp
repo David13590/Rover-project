@@ -17,24 +17,24 @@ void setup(){
 }
 
 void loop(){
-  static int state = 0;
-  if(state == 0){
+  static int gestureState = 0;
+  if(gestureState == 0){
       if(mainGesture.readGesture() == HIGH){
-          state = 1;
+          gestureState = 1;
       }
   }
-  if(state == 1){
+  if(gestureState == 1){
       if(mainGesture.readGesture() == HIGH){
-          state = 0;
+          gestureState = 0;
       }
   }
   
-  Serial.print(state);
-  if(state == 0){
+  //Serial.print(state);
+  if(gestureState == 0){
     mainMotor.stopMotors();
     delay(1);
   }
-  if(state == 1){
+  if(gestureState == 1){
     //decision();
     mainMotor.runMotors();
     Serial.println();
