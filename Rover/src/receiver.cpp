@@ -1,23 +1,14 @@
 #include <esp_now.h>
 #include <WiFi.h>
 #include <wire.h>
+#include "receiver.hpp"
 
-// Structure example to receive data
-// Must match the sender structure
-typedef struct channel_data {
-  int channel1;
-  int channel2;
-  bool channel3;
-  int channel4;
-  int channel5;
-  bool channel6;
-} channel_data;
-
-// Create a struct_message
+// Create structs to save data
 channel_data channelValue;
+saved_channel_data saved_data;
 
 // callback function that will be executed when data is received
-void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
+saved_channel_data* OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&channelValue, incomingData, sizeof(channelValue));
   Serial.print(" joy1x: ");
   Serial.print(channelValue.channel1);
@@ -31,12 +22,18 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   Serial.print(channelValue.channel5);
   Serial.print(" knap2: ");
   Serial.println(channelValue.channel6);
+
+  saved_data.channel1 = channelValue.channel1;
+  saved_data.channel2 = channelValue.channel2;
+  saved_data.channel3 = channelValue.channel3;
+  saved_data.channel4 = channelValue.channel4;
+  saved_data.channel5 = channelValue.channel5;
+  saved_data.channel6 = channelValue.channel6;
+
+  return &saved_data;
 }
 
-void setup() {
-  // Initialize Serial Monitor
-  //Serial.begin(115200);
-
+void receiver_setup() {
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
 

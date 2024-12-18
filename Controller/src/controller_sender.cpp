@@ -16,17 +16,8 @@ ezButton joyRightButton(JOY_RIGHT_SW_PIN);
 uint8_t broadcastAddress[] = {0xd0, 0xef, 0x76, 0xf0, 0x11, 0xd8}; 
 const int joystickMaxRead = 4095;
 
-typedef struct channel_data {
-  int channel1;
-  int channel2;
-  bool channel3;
-  int channel4;
-  int channel5;
-  bool channel6;
-} channel_data;
-
 // Create a channel_data for sender
-channel_data channelValue;
+controllerSender::channel_data channelValue;
 
 esp_now_peer_info_t peerInfo;
 
@@ -37,6 +28,7 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
 }
  
 void setup() {
+  pinMode(pcbButtonLeft, INPUT_PULLUP);
   joystickLeft.setup(JOY_LEFT_VRX_PIN, JOY_LEFT_VRY_PIN, JOY_LEFT_SW_PIN);
   joystickRight.setup(JOY_RIGHT_VRX_PIN, JOY_RIGHT_VRY_PIN, JOY_RIGHT_SW_PIN);
 
@@ -84,6 +76,7 @@ void loop() {
   channelValue.channel4 = myjoystickvalueRight.x;
   channelValue.channel5 = myjoystickvalueRight.y;
   channelValue.channel6 = myjoystickvalueRight.button;
+  channelValue.channel7 = digitalRead(pcbButtonLeft);
   
   // Send message via ESP-NOW
   esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &channelValue, sizeof(channelValue));
@@ -103,5 +96,7 @@ void loop() {
   Serial.print(channelValue.channel5);
   Serial.print(" knap2: ");
   Serial.print(channelValue.channel6);
+  Serial.print(" knapPCB: ");
+  Serial.print(channelValue.channel7);
   delay(50);
 }

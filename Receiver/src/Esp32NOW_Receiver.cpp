@@ -11,6 +11,7 @@ typedef struct channel_data {
   int channel4;
   int channel5;
   bool channel6;
+  bool channel7;
 } channel_data;
 
 // Create a struct_message called myData
