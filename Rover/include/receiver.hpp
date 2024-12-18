@@ -10,15 +10,19 @@ typedef struct channel_data{
     int channel4;
     int channel5;
     bool channel6;
+    bool channel7;
+    bool channel8;
 } channel_data;
 
 typedef struct saved_channel_data{
-    int saved_channel1;
-    int saved_channel2;
-    bool saved_channel3;
-    int saved_channel4;
-    int saved_channel5;
-    bool saved_channel6;
+    int channel1;
+    int channel2;
+    bool channel3;
+    int channel4;
+    int channel5;
+    bool channel6;
+    bool channel7;
+    bool channel8;
 } saved_channel_data;
 
 #endif

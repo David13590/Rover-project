@@ -14,6 +14,7 @@ class controllerSender{
         #define JOY_RIGHT_SW_PIN 37
 
         #define pcbButtonLeft 2
+        #define pcbButtonRight 38
 
     public:
         const int buttonDebounceTime = 100;
@@ -30,6 +31,7 @@ class controllerSender{
             int channel5;
             bool channel6;
             bool channel7;
+            bool channel8;
         } channel_data;             
 };
 #endif

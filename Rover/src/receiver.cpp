@@ -22,6 +22,10 @@ saved_channel_data* OnDataRecv(const uint8_t * mac, const uint8_t *incomingData,
   Serial.print(channelValue.channel5);
   Serial.print(" knap2: ");
   Serial.println(channelValue.channel6);
+  Serial.print(" pcbButtonLeft: ");
+  Serial.println(channelValue.channel7);
+  Serial.print(" pcbButtonRight: ");
+  Serial.println(channelValue.channel8);
 
   saved_data.channel1 = channelValue.channel1;
   saved_data.channel2 = channelValue.channel2;
@@ -29,7 +33,8 @@ saved_channel_data* OnDataRecv(const uint8_t * mac, const uint8_t *incomingData,
   saved_data.channel4 = channelValue.channel4;
   saved_data.channel5 = channelValue.channel5;
   saved_data.channel6 = channelValue.channel6;
-
+  saved_data.channel7 = channelValue.channel7;
+  saved_data.channel8 = channelValue.channel8;
   return &saved_data;
 }
 
