@@ -65,38 +65,15 @@ void setup() {
 int testValues[] = {0, 1850, 4095};
 int testValueCounter = 0;
 void loop() {
-  // Set values to send
-  joystick::joystickValue myjoystickvalueLeft{};
-  joystick::joystickValue myjoystickvalueRight{};
-
-  if(testValueCounter == 0){
-    myjoystickvalueLeft.x = testValues[testValueCounter];
-    testValueCounter = 1;
-  }
-  if(testValueCounter == 1){
-    myjoystickvalueLeft.x = testValues[testValueCounter];
-    testValueCounter = 2;
-  }
-  if(testValueCounter == 2){
-    myjoystickvalueLeft.x = testValues[testValueCounter];
-    testValueCounter = 0;
-  }
-
-  
-  myjoystickvalueLeft.x = map(myjoystickvalueLeft.x, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
-  myjoystickvalueLeft.y = map(myjoystickvalueLeft.y, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
-  myjoystickvalueRight.x = map(myjoystickvalueRight.x, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
-  myjoystickvalueRight.y = map(myjoystickvalueRight.y, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
-  joyLeftButton.loop(); 
-  joyRightButton.loop();
-  channelValue.channel1 = myjoystickvalueLeft.x;
-  channelValue.channel2 = myjoystickvalueLeft.y;
-  channelValue.channel3 = myjoystickvalueLeft.button;
-  channelValue.channel4 = myjoystickvalueRight.x;
-  channelValue.channel5 = myjoystickvalueRight.y;
-  channelValue.channel6 = myjoystickvalueRight.button;
-  channelValue.channel7 = digitalRead(pcbButtonLeft);
-  channelValue.channel8 = digitalRead(pcbButtonRight);
+  // Set values to send  
+  channelValue.channel1 = map(4095, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
+  channelValue.channel2 = map(300, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
+  channelValue.channel3 = 0;
+  channelValue.channel4 = 100;
+  channelValue.channel5 = 900;
+  channelValue.channel6 = 0;
+  channelValue.channel7 = 0;
+  channelValue.channel8 = 1;
   
   // Send message via ESP-NOW
   esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &channelValue, sizeof(channelValue));
@@ -118,5 +95,8 @@ void loop() {
   Serial.print(channelValue.channel6);
   Serial.print(" buttonPCBLeft: ");
   Serial.print(channelValue.channel7);
+  Serial.print(" buttonPCBRight: ");
+  Serial.print(channelValue.channel8);
+
   delay(1000);
 }
