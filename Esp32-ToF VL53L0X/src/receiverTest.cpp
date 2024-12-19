@@ -77,22 +77,24 @@ void setup() {
 }
 
 
-//TEST//
+// //TEST//
+// int deadZoneMin = 400;
+// int deadZoneMax = 500;
+// void receiverTest(){
+//   if(saved_data.JoyLeftX > deadZoneMin && saved_data.JoyLeftX < deadZoneMax){
+//     Serial.print("Idle");
+//   }
+//   if(saved_data.JoyLeftX < deadZoneMin){
+//     Serial.print("Forwards");
+//   }
+//   if(saved_data.JoyLeftX > deadZoneMax){
+//     Serial.print("Backwards");
+//   }
+// }
+// //TEST_END//
+
 int deadZoneMin = 400;
 int deadZoneMax = 500;
-void receiverTest(){
-  if(saved_data.JoyLeftX > deadZoneMin && saved_data.JoyLeftX < deadZoneMax){
-    Serial.print("Idle");
-  }
-  if(saved_data.JoyLeftX < deadZoneMin){
-    Serial.print("Forwards");
-  }
-  if(saved_data.JoyLeftX > deadZoneMax){
-    Serial.print("Backwards");
-  }
-}
-//TEST_END//
-
 void loop(){
   Serial.print(" joy1x: ");
   Serial.print(channelValue.channel1);
@@ -110,4 +112,14 @@ void loop(){
   Serial.print(channelValue.channel7);
   Serial.print(" pcbButtonRight: ");
   Serial.println(channelValue.channel8);
+
+  if(saved_data.JoyLeftX > deadZoneMin && saved_data.JoyLeftX < deadZoneMax){
+    Serial.print("Idle");
+  }
+  if(saved_data.JoyLeftX < deadZoneMin){
+    Serial.print("Backward");
+  }
+  if(saved_data.JoyLeftX > deadZoneMax){
+    Serial.print("Forward");
+  }
 }
