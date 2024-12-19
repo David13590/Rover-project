@@ -1,8 +1,6 @@
 #ifndef RECEIVER_HPP_
 #define RECEIVER_HPP_
 
-void receiver_setup();
-
 typedef struct channel_data{
     int channel1;
     int channel2;
@@ -24,5 +22,8 @@ typedef struct saved_channel_data{
     bool channel7;
     bool channel8;
 } saved_channel_data;
+
+void receiver_setup();
+saved_channel_data& get_saved_channel_data();
 
 #endif
