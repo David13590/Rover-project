@@ -65,8 +65,13 @@ void setup() {
 int testValues[] = {0, 1850, 4095};
 int testValueCounter = 0;
 void loop() {
+  if(testValueCounter < 2){
+    testValueCounter++;
+  }
+  else(testValueCounter = 0);
+
   // Set values to send  
-  channelValue.channel1 = map(4095, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
+  channelValue.channel1 = map(testValues[testValueCounter], controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
   channelValue.channel2 = map(300, controllerConfig.mapFromLow, controllerConfig.mapFromHigh, controllerConfig.mapToLow, controllerConfig.mapToHigh);
   channelValue.channel3 = 0;
   channelValue.channel4 = 100;
