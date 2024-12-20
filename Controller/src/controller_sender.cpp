@@ -29,7 +29,7 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
  
 void setup() {
   pinMode(pcbButtonLeft, INPUT_PULLUP);
-  pinMode(pcbButtonRight, INPUT_PULLUP);
+  pinMode(pcbButtonRight, INPUT);
   joystickLeft.setup(JOY_LEFT_VRX_PIN, JOY_LEFT_VRY_PIN, JOY_LEFT_SW_PIN);
   joystickRight.setup(JOY_RIGHT_VRX_PIN, JOY_RIGHT_VRY_PIN, JOY_RIGHT_SW_PIN);
 
@@ -100,5 +100,7 @@ void loop() {
   Serial.print(channelValue.channel6);
   Serial.print(" buttonPCBLeft: ");
   Serial.print(channelValue.channel7);
+  Serial.print(" buttonPCBRight: ");
+  Serial.print(channelValue.channel8);
   delay(50);
 }

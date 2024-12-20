@@ -8,7 +8,7 @@ channel_data channelValue;
 saved_channel_data saved_data;
 
 // callback function that will be executed when data is received
-saved_channel_data* OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
+void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&channelValue, incomingData, sizeof(channelValue));
   Serial.print(" joy1x: ");
   Serial.print(channelValue.channel1);
@@ -35,7 +35,10 @@ saved_channel_data* OnDataRecv(const uint8_t * mac, const uint8_t *incomingData,
   saved_data.channel6 = channelValue.channel6;
   saved_data.channel7 = channelValue.channel7;
   saved_data.channel8 = channelValue.channel8;
-  return &saved_data;
+}
+
+saved_channel_data& get_saved_channel_data(){
+  return saved_data;
 }
 
 void receiver_setup() {

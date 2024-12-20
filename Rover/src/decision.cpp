@@ -32,5 +32,6 @@ decision::decisionReturnPercent* decision::get_decision(){
     //      myMotorPercent.motorPercentLeft = motorPercent[0];
     // }
 
+    
     return &myMotorPercent;
 }

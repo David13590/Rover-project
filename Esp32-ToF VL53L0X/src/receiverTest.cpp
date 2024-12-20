@@ -76,23 +76,6 @@ void setup() {
   esp_now_register_recv_cb(esp_now_recv_cb_t(OnDataRecv));
 }
 
-
-// //TEST//
-// int deadZoneMin = 400;
-// int deadZoneMax = 500;
-// void receiverTest(){
-//   if(saved_data.JoyLeftX > deadZoneMin && saved_data.JoyLeftX < deadZoneMax){
-//     Serial.print("Idle");
-//   }
-//   if(saved_data.JoyLeftX < deadZoneMin){
-//     Serial.print("Forwards");
-//   }
-//   if(saved_data.JoyLeftX > deadZoneMax){
-//     Serial.print("Backwards");
-//   }
-// }
-// //TEST_END//
-
 int deadZoneMin = 400;
 int deadZoneMax = 500;
 void loop(){
