@@ -12,5 +12,7 @@ class decision{
     private:
         sensorClass mySensor;
         decisionReturnPercent myMotorPercent;
+        int deadZoneMin = 400;
+        int deadZoneMax = 500;
 };
 #endif

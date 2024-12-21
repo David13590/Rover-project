@@ -5,6 +5,7 @@
 #include "sensor.hpp"
 #include "decision.hpp"
 #include "gesture.hpp"
+#include "receiver.hpp"
 motor mainMotor;
 gesture mainGesture;
 sensorClass mainSensor;
@@ -13,7 +14,8 @@ void setup(){
   mainSensor.sensorSetup();
   mainGesture.gestureSetup();
   mainMotor.motorSetup();
-  //motorCheck();
+  receiver_setup();
+  mainMotor.motorCheck();
 }
 
 void loop(){
@@ -29,9 +31,9 @@ void loop(){
       }
   }
   
-  //Serial.print(state);
+  Serial.print(gestureState);
   if(gestureState == 0){
-    mainMotor.stopMotors();
+    //mainMotor.stopMotors();
     delay(1);
   }
   if(gestureState == 1){
@@ -40,6 +42,6 @@ void loop(){
     Serial.println();
     delay(1);
   }
+  mainMotor.runMotors();
+  Serial.println();
 }
-
-

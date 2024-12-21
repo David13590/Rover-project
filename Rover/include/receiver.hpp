@@ -13,14 +13,14 @@ typedef struct channel_data{
 } channel_data;
 
 typedef struct saved_channel_data{
-    int channel1;
-    int channel2;
-    bool channel3;
-    int channel4;
-    int channel5;
-    bool channel6;
-    bool channel7;
-    bool channel8;
+    int joy1x;
+    int jo1y;
+    bool joy1Button;
+    int joy2x;
+    int joy2y;
+    bool joy2Button;
+    bool pcbLeftButton;
+    bool pcbRightButton;
 } saved_channel_data;
 
 void receiver_setup();

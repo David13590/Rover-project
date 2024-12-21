@@ -39,13 +39,13 @@ sensorClass::sensorReturnOutput* sensorClass::sensorRead(){
     int distanceLeft = sensor.readRangeContinuousMillimeters();
     int distanceRight = sensor2.readRangeContinuousMillimeters();
 
-    Serial.print("DistanceLeft: ");
-    Serial.print(distanceLeft);
-    Serial.print("mm ");
+    // Serial.print("DistanceLeft: ");
+    // Serial.print(distanceLeft);
+    // Serial.print("mm ");
     
-    Serial.print("DistanceRight: ");
-    Serial.print(distanceRight);
-    Serial.print("mm ");
+    // Serial.print("DistanceRight: ");
+    // Serial.print(distanceRight);
+    // Serial.print("mm ");
 
 mySensorOutput.sensorDistanceLeft = distanceLeft;
 mySensorOutput.sensorDistanceRight = distanceRight;

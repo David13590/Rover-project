@@ -10,31 +10,31 @@ saved_channel_data saved_data;
 // callback function that will be executed when data is received
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&channelValue, incomingData, sizeof(channelValue));
-  Serial.print(" joy1x: ");
+  Serial.print(" 1x: ");
   Serial.print(channelValue.channel1);
-  Serial.print(" joy1y: ");
+  Serial.print(" 1y: ");
   Serial.print(channelValue.channel2);
-  Serial.print(" knap1: ");
+  Serial.print(" : ");
   Serial.print(channelValue.channel3);
-  Serial.print("\t joy2x: ");
+  Serial.print(" 2x: ");
   Serial.print(channelValue.channel4);
-  Serial.print(" joy2y: ");
+  Serial.print(" 2y: ");
   Serial.print(channelValue.channel5);
-  Serial.print(" knap2: ");
-  Serial.println(channelValue.channel6);
-  Serial.print(" pcbButtonLeft: ");
-  Serial.println(channelValue.channel7);
-  Serial.print(" pcbButtonRight: ");
-  Serial.println(channelValue.channel8);
+  Serial.print(" 2: ");
+  Serial.print(channelValue.channel6);
+  Serial.print(" L: ");
+  Serial.print(channelValue.channel7);
+  Serial.print(" R: ");
+  Serial.print(channelValue.channel8);
 
-  saved_data.channel1 = channelValue.channel1;
-  saved_data.channel2 = channelValue.channel2;
-  saved_data.channel3 = channelValue.channel3;
-  saved_data.channel4 = channelValue.channel4;
-  saved_data.channel5 = channelValue.channel5;
-  saved_data.channel6 = channelValue.channel6;
-  saved_data.channel7 = channelValue.channel7;
-  saved_data.channel8 = channelValue.channel8;
+  saved_data.joy1x = channelValue.channel1;
+  saved_data.jo1y = channelValue.channel2;
+  saved_data.joy1Button = channelValue.channel3;
+  saved_data.joy2x = channelValue.channel4;
+  saved_data.joy2y = channelValue.channel5;
+  saved_data.joy2Button = channelValue.channel6;
+  saved_data.pcbLeftButton = channelValue.channel7;
+  saved_data.pcbRightButton = channelValue.channel8;
 }
 
 saved_channel_data& get_saved_channel_data(){

@@ -6,6 +6,7 @@ void gesture::gestureSetup(){
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(buttonPin, INPUT);
     digitalWrite(LED_BUILTIN, HIGH);
+    Serial.print("Gesture setup complete");
 }
 
 bool gesture::readGesture(){

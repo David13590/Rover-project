@@ -9,6 +9,7 @@ void motor::motorSetup(){
         pinMode(motorPins[i], OUTPUT);
         analogWrite(motorPins[i], 0);
     }
+    Serial.print("Motor setup complete");
 }
 
 //Motor check for at se om motore virker og sidder rigtigt.
