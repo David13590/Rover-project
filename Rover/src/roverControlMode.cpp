@@ -11,7 +11,7 @@ int reactDistance[] = {100, 140, 180, 220, 280}; //Distance if sensor reads valu
 
 decision::decisionReturnPercent myControlModeReturn;
 int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, bool gesture){
-    if(gesture == true){
+    if(gesture == true || joystick_data.pcbLeftButton == true && joystick_data.pcbRightButton == true){
         gestureCount++;
         currentRoverMode = gestureCount;
     }
@@ -44,6 +44,19 @@ decision::decisionReturnPercent mode_joystick_drive(saved_channel_data joystick_
     else{
         myControlModeReturn.motorPercentLeft = motorPercentForward[0];
         myControlModeReturn.motorPercentRight = motorPercentForward[0];
+    }
+
+    if(joystick_data.joy2y > deadZoneMax){
+        myControlModeReturn.motorPercentLeft = motorPercentForward[4];
+        myControlModeReturn.motorPercentRight = motorPercentForward[0];
+    }
+    else if(joystick_data.joy2y < deadZoneMin){
+        myControlModeReturn.motorPercentLeft = motorPercentForward[0];
+        myControlModeReturn.motorPercentRight = motorPercentForward[4];
+    }
+    else{
+        myControlModeReturn.motorPercentLeft = motorPercentForward[0];
+        myControlModeReturn.motorPercentRight = motorPercentForward[0]; 
     }
     return myControlModeReturn;
 }
