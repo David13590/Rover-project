@@ -1,48 +1,36 @@
 #include <Arduino.h>
-#include "motor.hpp"
-#include "sensor.hpp"
 #include "decision.hpp"
-#include "receiver.hpp"
+#include "savedChannelData.hpp"
+#include "roverControlMode.hpp"
 
 decision::decisionReturnPercent* decision::get_decision(){
-    sensorClass::sensorReturnOutput* mainSensorOutput = mySensor.sensorRead(); //Get sensor readings
+    sensorClass::sensorReturnOutput& mainSensorOutput = mySensor.sensorRead(); //Get sensor readings
     saved_channel_data&  my_saved_channel_data = get_saved_channel_data(); //Get saved data from joystick
-    
-    //procent motor speed  0   25   50   75   100
-    int reactDistance[] = {100, 140, 180, 220, 280}; //Distance hvis sensor læser noget under, drej.
-    int motorPercent[] = {0, 25, 50, 75, 100};
+    bool readDecisionGesture = decisionGesture.readGesture();
 
-    // //Højre motorsæt. Venstre sensor styre højre motorsæt
-    // myMotorPercent.motorPercentRight = motorPercent[4];
-    // for(int i=3; i>=0; i--){
-    //     if(mainSensorOutput->sensorDistanceLeft < reactDistance[i]){
-    //         myMotorPercent.motorPercentRight = motorPercent[i];
-    //     }  
-    // } 
-
-    // //Venstre motor sæt. Højre sensor
-    // myMotorPercent.motorPercentLeft = motorPercent[4];
-    // for(int i=3; i>=0; i--){
-    //     if(mainSensorOutput->sensorDistanceRight < reactDistance[i]){
-    //         myMotorPercent.motorPercentLeft = motorPercent[i];
-    //     }
-    // }
-    
-    if(my_saved_channel_data.joy1x > deadZoneMax){
-        Serial.print("RUN");
-        myMotorPercent.motorPercentLeft = motorPercent[4];
-        myMotorPercent.motorPercentRight = motorPercent[4];
+    static int roverCurrentMode = mode_select(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
+    Serial.print(roverCurrentMode);
+    switch (roverCurrentMode){
+    default://disarmed
+        myMotorPercent = mode_disarmed(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
+        Serial.print("Mode: disarmed");
+        break;
+    case joystickDrive:
+        myMotorPercent = mode_joystick_drive(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
+        Serial.print("Mode: joystickDrive");
+        break;
+    case joystickGrip:
+        myMotorPercent = mode_joystick_grip(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
+        Serial.print("Mode: joystickGrip");
+        break;
+    case joystickDriveAvoid:
+        myMotorPercent = mode_joystick_driveAvoid(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
+        Serial.print("Mode: joystickDriveAvoid");
+        break;
+    case sensorAvoid:
+        myMotorPercent = mode_sensorAvoid(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
+        Serial.print("Mode: sensorAvoid");
+        break;
     }
-    else{
-        myMotorPercent.motorPercentLeft = motorPercent[0];
-        myMotorPercent.motorPercentRight = motorPercent[0];
-    }
-
-    //Debug stop
-    // if (mainSensorOutput->sensorDistanceLeft > 1000){
-    //     myMotorPercent.motorPercentRight = motorPercent[0];
-    //      myMotorPercent.motorPercentLeft = motorPercent[0];
-    // }
-    Serial.print("*");
     return &myMotorPercent;
 }

@@ -35,7 +35,7 @@ void sensorClass::sensorSetup(){
 }
 
 static sensorClass::sensorReturnOutput mySensorOutput;
-sensorClass::sensorReturnOutput* sensorClass::sensorRead(){
+sensorClass::sensorReturnOutput& sensorClass::sensorRead(){
     int distanceLeft = sensor.readRangeContinuousMillimeters();
     int distanceRight = sensor2.readRangeContinuousMillimeters();
 
@@ -49,6 +49,6 @@ sensorClass::sensorReturnOutput* sensorClass::sensorRead(){
 
 mySensorOutput.sensorDistanceLeft = distanceLeft;
 mySensorOutput.sensorDistanceRight = distanceRight;
-return &mySensorOutput;
+return mySensorOutput;
     
 }

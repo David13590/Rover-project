@@ -8,7 +8,7 @@ class sensorClass{
             int sensorDistanceRight;
         };
         void sensorSetup();
-        sensorReturnOutput* sensorRead();
+        sensorReturnOutput& sensorRead();
 
     private:
         #define XshutSensor1 33

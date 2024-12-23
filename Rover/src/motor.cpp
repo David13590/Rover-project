@@ -43,14 +43,24 @@ void motor::motorCheck(){
 
   //decision percent 0, 25,  50,  75,  100   
 int motorSpeeds[] = {0, 160, 180, 200, 255};
-void motor::SetLeftMotorsSpeed(int speed){ //hastighed 0 1 2 eller 3 fra motorSpeeds array
+void motor::SetLeftMotorsSpeedForward(int speed){ //hastighed 0 1 2 eller 3 fra motorSpeeds array
     analogWrite(motorFL1, motorSpeeds[speed]);
     analogWrite(motorBL1, motorSpeeds[speed]);
 }
 
-void motor::SetRightMotorsSpeed(int speed){
+void motor::SetRightMotorsSpeedForward(int speed){
     analogWrite(motorFR1, motorSpeeds[speed]);
     analogWrite(motorBR1, motorSpeeds[speed]);
+}
+
+void motor::SetLeftMotorsSpeedBackward(int speed){
+    analogWrite(motorFL2, motorSpeeds[speed]);
+    analogWrite(motorBL2, motorSpeeds[speed]);
+}
+
+void motor::SetRightMotorsSpeedBackward(int speed){
+    analogWrite(motorFR2, motorSpeeds[speed]);
+    analogWrite(motorBR2, motorSpeeds[speed]);
 }
 
 void motor::stopMotors(){
@@ -64,37 +74,65 @@ void motor::stopMotors(){
 void motor::runMotors(){
     decision::decisionReturnPercent* myMotorPercent = myDecision.get_decision();
 
-    //Venstre sensor tæt. Styre højre motor sæt
+    //FORWARD: right motors
     if (myMotorPercent->motorPercentLeft == 0){
-        SetRightMotorsSpeed(0); // 0 stop højre
+        SetRightMotorsSpeedForward(0); // 0 stop højre
     }
     else if (myMotorPercent->motorPercentLeft > 1){
-        SetRightMotorsSpeed(1); // 25 procent fart
+        SetRightMotorsSpeedForward(1); // 25 procent fart
     }
     else if (myMotorPercent->motorPercentLeft > 25 ){
-        SetRightMotorsSpeed(2); // 50
+        SetRightMotorsSpeedForward(2); // 50
     }
     else if (myMotorPercent->motorPercentLeft > 50){
-        SetRightMotorsSpeed(3); // 75
+        SetRightMotorsSpeedForward(3); // 75
     }
     else if (myMotorPercent->motorPercentLeft > 75){
-        SetRightMotorsSpeed(4);// 100 Full speed ahead!!
+        SetRightMotorsSpeedForward(4);// 100 Full speed ahead!!
     } 
 
-    //Højre sensor tæt. Styre venstre motor sæt
+    //FORWARD: left motors
     if (myMotorPercent->motorPercentRight == 0){
-        SetLeftMotorsSpeed(0);
+        SetLeftMotorsSpeedForward(0);
     }
     else if (myMotorPercent->motorPercentRight > 1){
-        SetLeftMotorsSpeed(1);
+        SetLeftMotorsSpeedForward(1);
     }
     else if (myMotorPercent->motorPercentRight > 25){
-        SetLeftMotorsSpeed(2);
+        SetLeftMotorsSpeedForward(2);
     }
     else if (myMotorPercent->motorPercentRight > 50){
-        SetLeftMotorsSpeed(3);
+        SetLeftMotorsSpeedForward(3);
     }
     else if (myMotorPercent->motorPercentRight > 75){
-        SetLeftMotorsSpeed(4);
+        SetLeftMotorsSpeedForward(4);
+    }
+
+    //BACKWARD: Joystick
+    if (myMotorPercent->motorPercentLeft < -1){
+        SetRightMotorsSpeedBackward(1);
+    }
+    else if (myMotorPercent->motorPercentLeft < -25){
+        SetRightMotorsSpeedBackward(2);
+    }
+    else if (myMotorPercent->motorPercentLeft < -50){
+        SetRightMotorsSpeedBackward(3);
+    }
+    else if (myMotorPercent->motorPercentLeft < -75){
+        SetRightMotorsSpeedBackward(4);
+    } 
+
+    //BACKWARD: Joystick
+    if (myMotorPercent->motorPercentRight < -1){
+        SetLeftMotorsSpeedBackward(1);
+    }
+    else if (myMotorPercent->motorPercentRight < -25){
+        SetLeftMotorsSpeedBackward(2);
+    }
+    else if (myMotorPercent->motorPercentRight < -50){
+        SetLeftMotorsSpeedBackward(3);
+    }
+    else if (myMotorPercent->motorPercentRight < -75){
+        SetLeftMotorsSpeedBackward(4);
     }
 }

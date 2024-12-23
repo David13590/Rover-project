@@ -15,7 +15,7 @@ void setup(){
   mainGesture.gestureSetup();
   mainMotor.motorSetup();
   receiver_setup();
-  mainMotor.motorCheck();
+  //mainMotor.motorCheck();
 }
 
 void loop(){

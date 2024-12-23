@@ -23,8 +23,10 @@ class motor{
         #define motorBR2 3
 
     public:
-        void SetLeftMotorsSpeed(int speed);
-        void SetRightMotorsSpeed(int speeds);
+        void SetLeftMotorsSpeedForward(int speed);
+        void SetRightMotorsSpeedForward(int speed);
+        void SetLeftMotorsSpeedBackward(int speed);
+        void SetRightMotorsSpeedBackward(int speed);
         void stopMotors();
         void motorSetup();
         void runMotors();

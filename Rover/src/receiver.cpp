@@ -3,6 +3,17 @@
 #include <wire.h>
 #include "receiver.hpp"
 
+typedef struct channel_data{
+    int channel1;
+    int channel2;
+    bool channel3;
+    int channel4;
+    int channel5;
+    bool channel6;
+    bool channel7;
+    bool channel8;
+} channel_data;
+
 // Create structs to save data
 channel_data channelValue;
 saved_channel_data saved_data;

@@ -1,6 +1,7 @@
 #ifndef DECISION_HPP_
 #define DECISION_HPP_
 #include "sensor.hpp"
+#include "gesture.hpp"
 
 class decision{
     public:
@@ -12,7 +13,7 @@ class decision{
     private:
         sensorClass mySensor;
         decisionReturnPercent myMotorPercent;
-        int deadZoneMin = 400;
-        int deadZoneMax = 500;
+        gesture decisionGesture;
+        
 };
 #endif
