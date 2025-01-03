@@ -6,12 +6,12 @@
 
 static int gestureCount = 0;
 int motorPercentForward[] = {0, 25, 50, 75, 100};
-int motorPercentBackward[] = {-0, -25, -50, -100};
+int motorPercentBackward[] = {-0, -25, -50, -75, -100};
 int reactDistance[] = {100, 140, 180, 220, 280}; //Distance if sensor reads value under, turn.
 
 decision::decisionReturnPercent myControlModeReturn;
 int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, bool gesture){
-    if(gesture == true || joystick_data.pcbLeftButton == true && joystick_data.pcbRightButton == true){
+    if(gesture == true || joystick_data.pcbLeftButton == false && joystick_data.pcbRightButton == false){
         gestureCount++;
         currentRoverMode = gestureCount;
     }
@@ -74,7 +74,7 @@ decision::decisionReturnPercent mode_joystick_driveAvoid(saved_channel_data joys
 decision::decisionReturnPercent mode_sensorAvoid(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, bool gesture){
     //Højre motorsæt. Venstre sensor styre højre motorsæt
     myControlModeReturn.motorPercentRight = motorPercentForward[4];
-    for(int i=3; i>=0; i--){
+    for(int i=4; i>=0; i--){
         if(sensor_distance.sensorDistanceLeft < reactDistance[i]){
             myControlModeReturn.motorPercentRight = motorPercentForward[i];
         }  
@@ -82,7 +82,7 @@ decision::decisionReturnPercent mode_sensorAvoid(saved_channel_data joystick_dat
 
     //Venstre motor sæt. Højre sensor
     myControlModeReturn.motorPercentLeft = motorPercentForward[4];
-    for(int i=3; i>=0; i--){
+    for(int i=4; i>=0; i--){
         if(sensor_distance.sensorDistanceRight < reactDistance[i]){
             myControlModeReturn.motorPercentLeft = motorPercentForward[i];
         }

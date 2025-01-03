@@ -1,5 +1,5 @@
-#ifndef SWITCHMODE_HPP_
-#define SWITCHMODE_HPP_
+#ifndef ROVERCONTROLMODE_HPP_
+#define ROVERCONTROLMODE_HPP_
 #include "savedChannelData.hpp"
 #include "sensor.hpp"
 #include "gesture.hpp"
@@ -19,8 +19,8 @@ enum roverControlMode{
     joystickDriveAvoid,
     sensorAvoid,
 };
-int roverControlModeEnumLength = 5;
+const int roverControlModeEnumLength = 5;
 static int currentRoverMode = 0;
-int deadZoneMin = 400;
-int deadZoneMax = 500;
+const int deadZoneMin = 400;
+const int deadZoneMax = 500;
 #endif
