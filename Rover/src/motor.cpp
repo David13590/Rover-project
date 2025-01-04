@@ -73,7 +73,7 @@ void motor::stopMotors(){
 
 void motor::runMotors(){
     decision::decisionReturnPercent* myMotorPercent = myDecision.get_decision();
-
+    Serial.print(" running motors");
     //FORWARD: right motors
     if (myMotorPercent->motorPercentLeft == 0){
         SetRightMotorsSpeedForward(0); // 0 stop højre

@@ -29,6 +29,7 @@ bool gesture::readGesture(){
             lastTime = millis();
         }
         if(lastTime - startTime > 200){
+            Serial.print("gesture");
             gesture = true;
             state = 2;
         }

@@ -9,6 +9,8 @@ decision::decisionReturnPercent* decision::get_decision(){
     bool readDecisionGesture = decisionGesture.readGesture();
 
     static int roverCurrentMode = mode_select(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
+    roverCurrentMode = mode_select(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
+    
     Serial.print(roverCurrentMode);
     switch (roverCurrentMode){
     default://disarmed

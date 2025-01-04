@@ -21,22 +21,23 @@ saved_channel_data saved_data;
 // callback function that will be executed when data is received
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&channelValue, incomingData, sizeof(channelValue));
-  Serial.print(" 1x: ");
+  Serial.print(" 1X:");
   Serial.print(channelValue.channel1);
-  Serial.print(" 1y: ");
+  Serial.print(" 1Y:");
   Serial.print(channelValue.channel2);
-  Serial.print(" : ");
+  Serial.print(" 1JB:");
   Serial.print(channelValue.channel3);
-  Serial.print(" 2x: ");
+  Serial.print("   2X:");
   Serial.print(channelValue.channel4);
-  Serial.print(" 2y: ");
+  Serial.print(" 2Y:");
   Serial.print(channelValue.channel5);
-  Serial.print(" 2: ");
+  Serial.print(" 2JB:");
   Serial.print(channelValue.channel6);
-  Serial.print(" L: ");
+  Serial.print(" LB:");
   Serial.print(channelValue.channel7);
-  Serial.print(" R: ");
+  Serial.print(" RB:");
   Serial.print(channelValue.channel8);
+  Serial.print("  ");
 
   saved_data.joy1x = channelValue.channel1;
   saved_data.jo1y = channelValue.channel2;

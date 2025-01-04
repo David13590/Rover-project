@@ -11,7 +11,7 @@ int reactDistance[] = {100, 140, 180, 220, 280}; //Distance if sensor reads valu
 
 decision::decisionReturnPercent myControlModeReturn;
 int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, bool gesture){
-    if(gesture == true || joystick_data.pcbLeftButton == false && joystick_data.pcbRightButton == false){
+    if(gesture == HIGH /*|| joystick_data.pcbLeftButton == false && joystick_data.pcbRightButton == false*/){
         gestureCount++;
         currentRoverMode = gestureCount;
     }
@@ -19,6 +19,7 @@ int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutpu
         gestureCount = 0;
         currentRoverMode = gestureCount;
     }
+    Serial.print("modeselect");
     return currentRoverMode;
 }
 
