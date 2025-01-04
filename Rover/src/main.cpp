@@ -19,29 +19,29 @@ void setup(){
 }
 
 void loop(){
-  static int gestureState = 0;
-  if(gestureState == 0){
-      if(mainGesture.readGesture() == HIGH){
-          gestureState = 1;
-      }
-  }
-  if(gestureState == 1){
-      if(mainGesture.readGesture() == HIGH){
-          gestureState = 0;
-      }
-  }
+  // static int gestureState = 0;
+  // if(gestureState == 0){
+  //     if(mainGesture.readGesture() == HIGH){
+  //         gestureState = 1;
+  //     }
+  // }
+  // if(gestureState == 1){
+  //     if(mainGesture.readGesture() == HIGH){
+  //         gestureState = 0;
+  //     }
+  // }
   
-  Serial.print(gestureState);
-  if(gestureState == 0){
-    //mainMotor.stopMotors();
-    delay(1);
-  }
-  if(gestureState == 1){
-    //decision();
-    mainMotor.runMotors();
-    Serial.println();
-    delay(1);
-  }
+  // Serial.print(gestureState);
+  // if(gestureState == 0){
+  //   //mainMotor.stopMotors();
+  //   delay(1);
+  // }
+  // if(gestureState == 1){
+  //   //decision();
+  //   mainMotor.runMotors();
+  //   Serial.println();
+  //   delay(1);
+  // }
   mainMotor.runMotors();
   Serial.println();
 }

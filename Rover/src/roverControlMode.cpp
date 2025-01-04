@@ -26,10 +26,10 @@ int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutpu
 }
 
 decision::decisionReturnPercent mode_disarmed(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, bool gesture){
-    int percentLeft = motorPercentForward[0];
-    int percentRight = motorPercentForward[0];
-    myControlModeReturn.motorPercentLeft = percentLeft;
-    myControlModeReturn.motorPercentRight = percentRight;
+    myControlModeReturn.motorPercentLeft = motorPercentForward[0];
+    myControlModeReturn.motorPercentRight = motorPercentForward[0];
+    myControlModeReturn.motorPercentLeft = motorPercentBackward[0];
+    myControlModeReturn.motorPercentRight = motorPercentBackward[0];
     return myControlModeReturn; //Should return two structs??; motorPercent and armServo data 
 }
 
@@ -47,20 +47,23 @@ decision::decisionReturnPercent mode_joystick_drive(saved_channel_data joystick_
     else{
         myControlModeReturn.motorPercentLeft = motorPercentForward[0];
         myControlModeReturn.motorPercentRight = motorPercentForward[0];
+        myControlModeReturn.motorPercentLeft = motorPercentBackward[0];
+        myControlModeReturn.motorPercentRight = motorPercentBackward[0];
     }
 
     if(joystick_data.joy2y > deadZoneMax){
-        myControlModeReturn.motorPercentLeft = motorPercentForward[4];
-        myControlModeReturn.motorPercentRight = motorPercentForward[0];
-    }
-    else if(joystick_data.joy2y < deadZoneMin){
         myControlModeReturn.motorPercentLeft = motorPercentForward[0];
         myControlModeReturn.motorPercentRight = motorPercentForward[4];
     }
-    else{
-        myControlModeReturn.motorPercentLeft = motorPercentForward[0];
-        myControlModeReturn.motorPercentRight = motorPercentForward[0]; 
+    else if(joystick_data.joy2y < deadZoneMin){
+        myControlModeReturn.motorPercentLeft = motorPercentForward[4];
+        myControlModeReturn.motorPercentRight = motorPercentForward[0];
     }
+    // else{
+    //     myControlModeReturn.motorPercentLeft = motorPercentForward[0];
+    //     myControlModeReturn.motorPercentRight = motorPercentForward[0];
+    // }
+    
     return myControlModeReturn;
 }
 

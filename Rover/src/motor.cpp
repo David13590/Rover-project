@@ -69,19 +69,25 @@ void motor::stopMotors(){
 
     analogWrite(motorFR1, motorSpeeds[0]);
     analogWrite(motorBR1, motorSpeeds[0]);
+
+    analogWrite(motorFL2, motorSpeeds[0]);
+    analogWrite(motorBL2, motorSpeeds[0]);
+
+    analogWrite(motorFR2, motorSpeeds[0]);
+    analogWrite(motorBR2, motorSpeeds[0]);
 }
 
 void motor::runMotors(){
     decision::decisionReturnPercent* myMotorPercent = myDecision.get_decision();
     Serial.print(" running motors");
-    //FORWARD: right motors
+    //FORWARD: left motors
     if (myMotorPercent->motorPercentLeft == 0){
         SetRightMotorsSpeedForward(0); // 0 stop højre
     }
     else if (myMotorPercent->motorPercentLeft > 1){
         SetRightMotorsSpeedForward(1); // 25 procent fart
     }
-    else if (myMotorPercent->motorPercentLeft > 25 ){
+    else if (myMotorPercent->motorPercentLeft > 25){
         SetRightMotorsSpeedForward(2); // 50
     }
     else if (myMotorPercent->motorPercentLeft > 50){
@@ -91,7 +97,7 @@ void motor::runMotors(){
         SetRightMotorsSpeedForward(4);// 100 Full speed ahead!!
     } 
 
-    //FORWARD: left motors
+    //FORWARD: right motors
     if (myMotorPercent->motorPercentRight == 0){
         SetLeftMotorsSpeedForward(0);
     }
@@ -108,31 +114,37 @@ void motor::runMotors(){
         SetLeftMotorsSpeedForward(4);
     }
 
-    //BACKWARD: Joystick
-    if (myMotorPercent->motorPercentLeft < -1){
-        SetRightMotorsSpeedBackward(1);
+    //BACKWARD: Joystick left motors
+    if (myMotorPercent->motorPercentLeft == -0){
+        SetLeftMotorsSpeedBackward(0);
     }
-    else if (myMotorPercent->motorPercentLeft < -25){
-        SetRightMotorsSpeedBackward(2);
-    }
-    else if (myMotorPercent->motorPercentLeft < -50){
-        SetRightMotorsSpeedBackward(3);
-    }
-    else if (myMotorPercent->motorPercentLeft < -75){
-        SetRightMotorsSpeedBackward(4);
-    } 
-
-    //BACKWARD: Joystick
-    if (myMotorPercent->motorPercentRight < -1){
+    else if (myMotorPercent->motorPercentLeft < -1){
         SetLeftMotorsSpeedBackward(1);
     }
-    else if (myMotorPercent->motorPercentRight < -25){
+    else if (myMotorPercent->motorPercentLeft < -25){
         SetLeftMotorsSpeedBackward(2);
     }
-    else if (myMotorPercent->motorPercentRight < -50){
+    else if (myMotorPercent->motorPercentLeft < -50){
         SetLeftMotorsSpeedBackward(3);
     }
-    else if (myMotorPercent->motorPercentRight < -75){
+    else if (myMotorPercent->motorPercentLeft < -75){
         SetLeftMotorsSpeedBackward(4);
+    } 
+
+    //BACKWARD: Joystick right motors
+    if(myMotorPercent->motorPercentRight == -0){
+        SetRightMotorsSpeedBackward(0);
+    }
+    else if(myMotorPercent->motorPercentRight < -1){
+        SetRightMotorsSpeedBackward(1);
+    }
+    else if (myMotorPercent->motorPercentRight < -25){
+        SetRightMotorsSpeedBackward(2);
+    }
+    else if (myMotorPercent->motorPercentRight < -50){
+        SetRightMotorsSpeedBackward(3);
+    }
+    else if (myMotorPercent->motorPercentRight < -75){
+        SetRightMotorsSpeedBackward(4);
     }
 }
