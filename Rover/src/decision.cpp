@@ -8,11 +8,9 @@ decision::decisionReturnPercent* decision::get_decision(){
     saved_channel_data&  my_saved_channel_data = get_saved_channel_data(); //Get saved data from joystick
     bool readDecisionGesture = decisionGesture.readGesture();
 
-    static int roverCurrentMode = mode_select(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
-    roverCurrentMode = mode_select(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
-    
-    Serial.print(roverCurrentMode);
-    switch (roverCurrentMode){
+    currentRoverMode = mode_select(my_saved_channel_data, mainSensorOutput, readDecisionGesture, currentRoverMode);
+    Serial.print(currentRoverMode);
+    switch (currentRoverMode){
     default://disarmed
         myMotorPercent = mode_disarmed(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
         Serial.print("Mode: disarmed");

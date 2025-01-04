@@ -18,13 +18,13 @@ bool gesture::readGesture(){
     bool gesture = false;
     digitalWrite(LED_BUILTIN, senseGesture);
 
-    if(state == 0){
+    if(state == 0){ //wait for trig
         if(senseGesture == HIGH){
             state = 1;
             startTime = millis();
         }
     }
-    if(state == 1){
+    if(state == 1){ //Signal active debounce wait
         if(senseGesture == HIGH){
             lastTime = millis();
         }
@@ -34,7 +34,7 @@ bool gesture::readGesture(){
             state = 2;
         }
     } 
-    if(state == 2){
+    if(state == 2){ //Signal inacitve reset trig wait 
         if(senseGesture == HIGH){
             lastTime = millis();
         }

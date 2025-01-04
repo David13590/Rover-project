@@ -5,7 +5,7 @@
 #include "gesture.hpp"
 #include "decision.hpp"
 
-int mode_select(saved_channel_data, sensorClass::sensorReturnOutput, bool gesture);
+int mode_select(saved_channel_data, sensorClass::sensorReturnOutput, bool gesture, int currentRoverMode);
 decision::decisionReturnPercent mode_disarmed(saved_channel_data, sensorClass::sensorReturnOutput, bool gesture);
 decision::decisionReturnPercent mode_joystick_drive(saved_channel_data, sensorClass::sensorReturnOutput, bool gesture);
 decision::decisionReturnPercent mode_joystick_grip(saved_channel_data, sensorClass::sensorReturnOutput, bool gesture);

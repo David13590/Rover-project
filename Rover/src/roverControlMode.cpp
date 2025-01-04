@@ -3,6 +3,7 @@
 #include "receiver.hpp"
 #include "savedChannelData.hpp"
 #include "decision.hpp"
+#include "buttonModeSwitch.hpp"
 
 static int gestureCount = 0;
 int motorPercentForward[] = {0, 25, 50, 75, 100};
@@ -10,8 +11,10 @@ int motorPercentBackward[] = {-0, -25, -50, -75, -100};
 int reactDistance[] = {100, 140, 180, 220, 280}; //Distance if sensor reads value under, turn.
 
 decision::decisionReturnPercent myControlModeReturn;
-int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, bool gesture){
-    if(gesture == HIGH /*|| joystick_data.pcbLeftButton == false && joystick_data.pcbRightButton == false*/){
+int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, bool gesture, int currentRoverMode){
+    int buttonsPressedReturn = 0;
+    buttonsPressedReturn = buttonSwitchDetect(joystick_data);
+    if(gesture == HIGH || buttonsPressedReturn == true){
         gestureCount++;
         currentRoverMode = gestureCount;
     }
@@ -19,7 +22,6 @@ int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutpu
         gestureCount = 0;
         currentRoverMode = gestureCount;
     }
-    Serial.print("modeselect");
     return currentRoverMode;
 }
 
