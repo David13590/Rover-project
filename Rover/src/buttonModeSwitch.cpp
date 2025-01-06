@@ -10,21 +10,21 @@ bool buttonSwitchDetect(saved_channel_data joystick_data){
     bool controllerButtonPress = false;
     bool buttonsPressed = joystick_data.pcbLeftButton == false && joystick_data.pcbRightButton == false;
     if(state == 0){
-        if(buttonsPressed == true){
+        if(buttonsPressed == true){ // wait for trig
             state = 1;
             startTime = millis();  
         }
     }
     if(state == 1){
-        if(buttonsPressed == true){
+        if(buttonsPressed == true){ //Signal active debounce wait
             lastTime = millis();
         }
-        if(lastTime - startTime > 200){
+        if(lastTime - startTime > 200){ 
             controllerButtonPress = true;
             state = 2;
         }
     }
-    if(state == 2){
+    if(state == 2){ //Signal inacitve reset trig wait
         if(buttonsPressed == true){
             lastTime = millis();
         }

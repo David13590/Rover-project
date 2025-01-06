@@ -3,7 +3,7 @@
 
 class gesture{
     private:
-        #define buttonPin 17
+        #define buttonPin 1
 
     public:
         void gestureSetup();

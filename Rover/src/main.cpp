@@ -4,17 +4,21 @@
 #include "motor.hpp"
 #include "sensor.hpp"
 #include "decision.hpp"
-#include "gesture.hpp"
+//#include "gesture.hpp"
 #include "receiver.hpp"
+#include "arm.hpp"
 motor mainMotor;
-gesture mainGesture;
+//gesture mainGesture;
 sensorClass mainSensor;
+armClass mainArm;
 
 void setup(){
   mainSensor.sensorSetup();
-  mainGesture.gestureSetup();
+  //mainGesture.gestureSetup();
   mainMotor.motorSetup();
+  //mainArm.setup();
   receiver_setup();
+  //mainArm.armTest();
   //mainMotor.motorCheck();
 }
 

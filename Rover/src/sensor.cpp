@@ -18,10 +18,10 @@ void sensorClass::sensorSetup(){
     Wire.begin();
     
     //Tænd sensor1
-    digitalWrite(XshutSensor1, HIGH); //Tænd en efter en og sæt adresse
+    digitalWrite(XshutSensor1, HIGH); //Turn on one by one
     delay(150);
     sensor.init(true);
-    sensor.setAddress((uint8_t)01); //Ny adresse
+    sensor.setAddress((uint8_t)01); //New adress
 
     //Tænd sensor2
     digitalWrite(XshutSensor2, HIGH);
