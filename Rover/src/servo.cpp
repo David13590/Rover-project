@@ -15,6 +15,6 @@ void servoClass::setup(int pin, int timerNumber){
 	// servo4Grip.attach(pinServo4Grip, 1000, 2000);
 }
 
-void servoClass::servo_move(int target){
+void servoClass::move(int target){
     myServo.write(target);
 }

@@ -4,6 +4,7 @@
 #include "savedChannelData.hpp"
 #include "decision.hpp"
 #include "buttonModeSwitch.hpp"
+#include "arm.hpp"
 
 static int gestureCount = 0;
 int motorPercentForward[] = {0, 25, 50, 75, 100};
@@ -62,8 +63,32 @@ decision::decisionReturnPercent mode_joystick_drive(saved_channel_data joystick_
     return myControlModeReturn;
 }
 
-decision::decisionReturnPercent mode_joystick_grip(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance){
+decision::decisionReturnPercent mode_joystick_grip(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, armClass& arm){
+    Serial.print("IN ARM MODE ");
+    myControlModeReturn.servoYawTarget = arm.yawCurrentPos;
+    myControlModeReturn.servoPitchTarget = arm.pitchCurrentPos;
+    myControlModeReturn.servoForwardBackTarget = arm.forwardBackCurrentPos;
+    myControlModeReturn.servoGripTarget = arm.gripCurrentPos;
 
+    if(joystick_data.joy2y > deadZoneMax){
+        arm.lastmoveTime = millis();
+        Serial.print("Moving arm");
+        myControlModeReturn.servoYawTarget = arm.yawCurrentPos + arm.decrement;
+        arm.yawCurrentPos = myControlModeReturn.servoYawTarget;
+        arm.yaw(arm.yawCurrentPos);
+
+        if(arm.lastmoveTime - arm.currentMoveTime > 200){
+             
+            arm.currentMoveTime = millis();
+        } 
+    }
+    if(joystick_data.joy2y < deadZoneMin){
+        arm.lastmoveTime = millis();
+        Serial.print("Moving arm");
+        myControlModeReturn.servoYawTarget = arm.yawCurrentPos + arm.increment;
+        arm.yawCurrentPos = myControlModeReturn.servoYawTarget;
+        arm.yaw(arm.yawCurrentPos);
+    }
     return myControlModeReturn;
 }
 

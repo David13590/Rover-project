@@ -2,10 +2,16 @@
 #include "decision.hpp"
 #include "savedChannelData.hpp"
 #include "roverControlMode.hpp"
+#include "arm.hpp"
+
+decision::decision(armClass& Arm): myArm{Arm}{
+
+}
 
 decision::decisionReturnPercent* decision::get_decision(){
     sensorClass::sensorReturnOutput& mainSensorOutput = mySensor.sensorRead(); //Get sensor readings
     saved_channel_data&  my_saved_channel_data = get_saved_channel_data(); //Get saved data from joystick
+    
     //bool readDecisionGesture = decisionGesture.readGesture();
 
     currentRoverMode = mode_select(my_saved_channel_data, mainSensorOutput, currentRoverMode);
@@ -20,7 +26,7 @@ decision::decisionReturnPercent* decision::get_decision(){
         Serial.print("Mode: joystickDrive");
         break;
     case joystickGrip:
-        myMotorPercent = mode_joystick_grip(my_saved_channel_data, mainSensorOutput);
+        myMotorPercent = mode_joystick_grip(my_saved_channel_data, mainSensorOutput, myArm);
         Serial.print("Mode: joystickGrip");
         break;
     // case joystickDriveAvoid:

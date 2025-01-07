@@ -7,16 +7,19 @@
 //#include "gesture.hpp"
 #include "receiver.hpp"
 #include "arm.hpp"
-motor mainMotor;
+motor* mainMotor;
+armClass mainArm;
+    
 //gesture mainGesture;
 sensorClass mainSensor;
-armClass mainArm;
+
 
 void setup(){
+  mainMotor = new motor(mainArm);
   mainSensor.sensorSetup();
   //mainGesture.gestureSetup();
-  mainMotor.motorSetup();
-  //mainArm.setup();
+  mainArm.setup();
+  mainMotor->motorSetup();
   receiver_setup();
   //mainArm.armTest();
   //mainMotor.motorCheck();
@@ -46,6 +49,6 @@ void loop(){
   //   Serial.println();
   //   delay(1);
   // }
-  mainMotor.runMotors();
+  mainMotor->runMotors();
   Serial.println();
 }

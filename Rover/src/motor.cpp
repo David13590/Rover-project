@@ -2,6 +2,10 @@
 #include "motor.hpp"
 #include "decision.hpp"
 
+motor::motor(armClass& Arm): myArm{Arm}, myDecision{Arm}{
+
+}
+
 void motor::motorSetup(){ 
     int motorPins[] = {motorFL1, motorFR1, motorFL2, motorFR2, motorBL1, motorBL2, motorBR1, motorBR2};
     int motorPinArrayLen = sizeof(motorPins)/sizeof(motorPins[0]); //Finder længden af pins array, sætter pins i array som output

@@ -2,42 +2,75 @@
 #include "arm.hpp"
 
 void armClass::setup(){
+    Serial.println("Arm setup");
     servo_yaw0.setup(yawPin, timer1);
-    // servo_pitch1.setup(pitchPin, timer2);
-    // servo_forwardBack2.setup(forwardBackPin, timer3);
-    // servo_grip3.setup(gripPin, timer4);
+    servo_pitch1.setup(pitchPin, timer2);
+    servo_forwardBack2.setup(forwardBackPin, timer3);
+    servo_grip3.setup(gripPin, timer4);
+    delay(100);
+
+    servo_yaw0.move(yawDefault);
+    servo_pitch1 .move(pitchDefault);
+    servo_forwardBack2.move(forwardBackDefault);
+    servo_grip3.move(gripDefault);
 }
 
 void armClass::armTest(){
-    Serial.print("Running arm test. Stand by.");
-    delay(3000);
-    servo_yaw0.servo_move(180);
-    Serial.print("180");
+    Serial.println("Running arm test. Stand by.");
     delay(2000);
-    servo_yaw0.servo_move(90);
-    Serial.print("90");
+    // Serial.print("Yaw ");
+    // servo_yaw0.move(160);
+    // Serial.print("160 ");
+    // delay(2000);
+    // servo_yaw0.move(40);
+    // Serial.print("40 ");
+    // delay(2000);
+    // servo_yaw0.move(90);
+    // Serial.println("90");
+    // delay(2000);
+
+    // Serial.print("Pitch ");
+    // servo_pitch1.move(140);
+    // Serial.print("140 ");
+    // delay(2000);
+    // servo_pitch1.move(70);
+    // Serial.println("70");
+    // delay(2000);
+
+    Serial.print("ForwardBack ");
+    servo_forwardBack2.move(40);
+    Serial.print("40 ");
     delay(2000);
-    servo_yaw0.servo_move(0);
-    Serial.print("0");
+    servo_forwardBack2.move(90);
+    Serial.println("90");
     delay(2000);
-    servo_yaw0.servo_move(90);
-    Serial.print("90");
-    delay(2000);
+    
+    // Serial.print("Grip ");
+    // servo_grip3.move(170);
+    // Serial.print("170 ");
+    // delay(2000);
+    // servo_grip3.move(80);
+    // Serial.println("80");
+    // delay(2000);
     Serial.println("Arm test finished.");
 }
     
-void armClass::yaw(){
-    servo_yaw0.servo_move(180);
+void armClass::yaw(int target){
+    servo_yaw0.move(target);
 }
 
-void armClass::pitch(){
-    servo_pitch1.servo_move(180);
+void armClass::pitch(int target){
+    servo_pitch1.move(target);
 }
 
-void armClass::forwardBack(){
-    servo_forwardBack2.servo_move(180);
+void armClass::forwardBack(int target){
+    servo_forwardBack2.move(target);
 }
 
-void armClass::grip(){
-    servo_grip3.servo_move(180);
+void armClass::grip(int target){
+    servo_grip3.move(target);
+}
+
+void armClass::runArm(int yaw){
+    servo_yaw0.move(yaw);
 }

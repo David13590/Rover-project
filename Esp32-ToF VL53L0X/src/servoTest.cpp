@@ -2,10 +2,15 @@
 #include <arduino.h>
 #include <wire.h>
 
+//Rover servo pins: yaw 17, grip 23, forwardback 16, pitch 4
+//Pitch max 55 ned, 170 max op ~85 midt
+//Yaw max 180 højre, 90 midt, 0 venstre
+//grip max 180 åben, MAX 109 lukket
+//forwardBack max frem 160, max tilbage 80
 Servo myservo;
 int pos = 0;
-int servoPin = 17;
- 
+int servoPin = 16;
+
 void setup() {
 	// Allow allocation of all timers
 	ESP32PWM::allocateTimer(0);
@@ -18,12 +23,7 @@ void setup() {
 }
  
 void loop() {
-	pos = 25;
-	myservo.write(pos);	 
-	Serial.println(pos);
-	delay(3000);
-	
-	pos = 100;        
+	pos = 80;        
 	myservo.write(pos);    // tell servo to go to position in variable 'pos'
 	Serial.println(pos);
 	delay(3000);  // waits 15ms for the servo to reach the position
@@ -33,4 +33,8 @@ void loop() {
 	Serial.println(pos);
 	delay(3000);
 
+	// pos = 0;
+	// myservo.write(pos);	 
+	// Serial.println(pos);
+	// delay(3000);
 }

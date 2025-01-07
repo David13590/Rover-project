@@ -1,11 +1,12 @@
 #ifndef MOTOR_HPP_
 #define MOTOR_HPP_
 #include "decision.hpp"
+#include "arm.hpp"
 
 class motor{
     private:
         decision myDecision;
-
+        armClass& myArm;
         //Forreste venstre motor
         #define motorFL1 25
         #define motorFL2 26
@@ -23,6 +24,7 @@ class motor{
         #define motorBR2 3
 
     public:
+        motor(armClass& Arm);
         void SetLeftMotorsSpeedForward(int speed);
         void SetRightMotorsSpeedForward(int speed);
         void SetLeftMotorsSpeedBackward(int speed);

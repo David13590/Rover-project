@@ -8,6 +8,6 @@ class servoClass{
        
     public:
         void setup(int servoPin, int servoTimerNumber);
-        void servo_move(int target);
+        void move(int target);
 };
 #endif
