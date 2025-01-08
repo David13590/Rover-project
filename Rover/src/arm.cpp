@@ -5,14 +5,15 @@ void armClass::setup(){
     Serial.println("Arm setup");
     servo_yaw0.setup(yawPin, timer1);
     servo_pitch1.setup(pitchPin, timer2);
-    servo_forwardBack2.setup(forwardBackPin, timer3);
-    servo_grip3.setup(gripPin, timer4);
+    //servo_forwardBack2.setup(forwardBackPin, timer3);
+    //servo_grip3.setup(gripPin, timer4);
     delay(100);
 
     servo_yaw0.move(yawDefault);
     servo_pitch1 .move(pitchDefault);
     servo_forwardBack2.move(forwardBackDefault);
     servo_grip3.move(gripDefault);
+    delay(300);
 }
 
 void armClass::armTest(){
@@ -69,8 +70,4 @@ void armClass::forwardBack(int target){
 
 void armClass::grip(int target){
     servo_grip3.move(target);
-}
-
-void armClass::runArm(int yaw){
-    servo_yaw0.move(yaw);
 }

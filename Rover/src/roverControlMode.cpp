@@ -64,30 +64,51 @@ decision::decisionReturnPercent mode_joystick_drive(saved_channel_data joystick_
 }
 
 decision::decisionReturnPercent mode_joystick_grip(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, armClass& arm){
-    Serial.print("IN ARM MODE ");
+    //Serial.print("IN ARM MODE ");
     myControlModeReturn.servoYawTarget = arm.yawCurrentPos;
     myControlModeReturn.servoPitchTarget = arm.pitchCurrentPos;
     myControlModeReturn.servoForwardBackTarget = arm.forwardBackCurrentPos;
     myControlModeReturn.servoGripTarget = arm.gripCurrentPos;
 
-    if(joystick_data.joy2y > deadZoneMax){
-        arm.lastmoveTime = millis();
-        Serial.print("Moving arm");
+    if(joystick_data.joy2y > deadZoneMax){ //Yaw right
+        Serial.print("Moving yaw");
         myControlModeReturn.servoYawTarget = arm.yawCurrentPos + arm.decrement;
         arm.yawCurrentPos = myControlModeReturn.servoYawTarget;
-        arm.yaw(arm.yawCurrentPos);
-
-        if(arm.lastmoveTime - arm.currentMoveTime > 200){
-             
-            arm.currentMoveTime = millis();
-        } 
     }
-    if(joystick_data.joy2y < deadZoneMin){
-        arm.lastmoveTime = millis();
-        Serial.print("Moving arm");
+    if(joystick_data.joy2y < deadZoneMin){ //Yaw left
+        Serial.print("Moving yaw");
         myControlModeReturn.servoYawTarget = arm.yawCurrentPos + arm.increment;
         arm.yawCurrentPos = myControlModeReturn.servoYawTarget;
-        arm.yaw(arm.yawCurrentPos);
+    }
+    if(joystick_data.joy1y > deadZoneMax){ //Pitch down
+        Serial.print("Moving pitch");
+        myControlModeReturn.servoPitchTarget = arm.pitchCurrentPos + arm.decrement;
+        arm.pitchCurrentPos = myControlModeReturn.servoPitchTarget;
+    }
+    if(joystick_data.joy1y < deadZoneMin){ //Pitch up
+        Serial.print("Moving pitch");
+        myControlModeReturn.servoPitchTarget = arm.pitchCurrentPos + arm.increment;
+        arm.pitchCurrentPos = myControlModeReturn.servoPitchTarget;
+    }
+    if(joystick_data.joy1x > deadZoneMax){ //ForwardBack
+        Serial.print("Moving ForwardBack");
+        myControlModeReturn.servoForwardBackTarget = arm.forwardBackCurrentPos + arm.decrement;
+        arm.forwardBackCurrentPos = myControlModeReturn.servoForwardBackTarget;
+    }
+    if(joystick_data.joy1x < deadZoneMin){ //ForwardBack
+        Serial.print("Moving ForwardBack");
+        myControlModeReturn.servoForwardBackTarget = arm.forwardBackCurrentPos + arm.increment;
+        arm.forwardBackCurrentPos = myControlModeReturn.servoForwardBackTarget;
+    }
+    if(joystick_data.joy2x > deadZoneMax){ //Grip 
+        Serial.print("Moving Grip");
+        myControlModeReturn.servoGripTarget = arm.gripCurrentPos + arm.increment;
+        arm.gripCurrentPos = myControlModeReturn.servoGripTarget;
+    }
+    if(joystick_data.joy2x < deadZoneMin){ //Grip
+        Serial.print("Moving Grip");
+        myControlModeReturn.servoGripTarget = arm.gripCurrentPos + arm.decrement;
+        arm.gripCurrentPos = myControlModeReturn.servoGripTarget;
     }
     return myControlModeReturn;
 }

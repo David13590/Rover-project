@@ -36,7 +36,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   Serial.print("  ");
 
   saved_data.joy1x = channelValue.channel1;
-  saved_data.jo1y = channelValue.channel2;
+  saved_data.joy1y = channelValue.channel2;
   saved_data.joy1Button = channelValue.channel3;
   saved_data.joy2x = channelValue.channel4;
   saved_data.joy2y = channelValue.channel5;

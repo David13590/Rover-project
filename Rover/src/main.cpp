@@ -9,7 +9,6 @@
 #include "arm.hpp"
 motor* mainMotor;
 armClass mainArm;
-    
 //gesture mainGesture;
 sensorClass mainSensor;
 
@@ -22,7 +21,7 @@ void setup(){
   mainMotor->motorSetup();
   receiver_setup();
   //mainArm.armTest();
-  //mainMotor.motorCheck();
+  //mainMotor->motorCheck();
 }
 
 void loop(){

@@ -83,7 +83,7 @@ void motor::stopMotors(){
 
 void motor::runMotors(){
     decision::decisionReturnPercent* myMotorPercent = myDecision.get_decision();
-    Serial.print(" running motors");
+    //Serial.print(" running motors    ");
     //FORWARD: left motors
     if (myMotorPercent->motorPercentLeft == 0){
         SetRightMotorsSpeedForward(0); // 0 stop højre
@@ -151,4 +151,18 @@ void motor::runMotors(){
     else if (myMotorPercent->motorPercentRight < -75){
         SetRightMotorsSpeedBackward(4);
     }
+
+    myArm.yaw(myArm.yawCurrentPos);
+    myArm.pitch(myArm.pitchCurrentPos);
+    myArm.forwardBack(myArm.forwardBackCurrentPos);
+    myArm.grip(myArm.gripCurrentPos);
+
+    Serial.print("YawPos:");
+    Serial.print(myArm.yawCurrentPos);
+    Serial.print("  PitchPos:");
+    Serial.print(myArm.pitchCurrentPos);
+    Serial.print("  ForwardBackPos:");
+    Serial.print(myArm.forwardBackCurrentPos);
+    Serial.print("  GripPos:");
+    Serial.print(myArm.gripCurrentPos);
 }

@@ -1,7 +1,7 @@
 #pragma once
 typedef struct saved_channel_data{
     int joy1x;
-    int jo1y;
+    int joy1y;
     bool joy1Button;
     int joy2x;
     int joy2y;

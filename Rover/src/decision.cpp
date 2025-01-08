@@ -19,15 +19,15 @@ decision::decisionReturnPercent* decision::get_decision(){
     switch (currentRoverMode){
     default://disarmed
         myMotorPercent = mode_disarmed(my_saved_channel_data, mainSensorOutput);
-        Serial.print("Mode: disarmed");
+        Serial.print("Mode: disarmed  ");
         break;
     case joystickDrive:
         myMotorPercent = mode_joystick_drive(my_saved_channel_data, mainSensorOutput);
-        Serial.print("Mode: joystickDrive");
+        Serial.print("Mode: joystickDrive  ");
         break;
     case joystickGrip:
         myMotorPercent = mode_joystick_grip(my_saved_channel_data, mainSensorOutput, myArm);
-        Serial.print("Mode: joystickGrip");
+        Serial.print("Mode: joystickGrip  ");
         break;
     // case joystickDriveAvoid:
     //     myMotorPercent = mode_joystick_driveAvoid(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
@@ -35,7 +35,7 @@ decision::decisionReturnPercent* decision::get_decision(){
     //     break;
     case sensorAvoid:
         myMotorPercent = mode_sensorAvoid(my_saved_channel_data, mainSensorOutput);
-        Serial.print("Mode: sensorAvoid");
+        Serial.print("Mode: sensorAvoid  ");
         break;
     }
     return &myMotorPercent;
