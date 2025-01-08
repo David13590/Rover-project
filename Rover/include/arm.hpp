@@ -10,7 +10,7 @@ class armClass{
         const int yawDefault = 90, pitchDefault = 165, forwardBackDefault = 85, gripDefault = 81;
         //int yawMax = 180, pitchMax = 170, forwardBackMax = 50,   gripMax = 81;
         //int yawMin = 0,   pitchMin = 55,  forwardBackMin = 50,   gripMin = 81;
-        int yawPin = 17,  pitchPin = 4,   forwardBackPin = 16 /*,   gripPin = 23*/;
+        int yawPin = 17,  pitchPin = 4,   forwardBackPin = 16, gripPin = 23; //grippin moved from 23 to 32
         int timer1 = 0, timer2 = 1, timer3 = 2, timer4 = 3;
 
     public:
