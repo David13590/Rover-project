@@ -12,7 +12,6 @@ armClass mainArm;
 //gesture mainGesture;
 sensorClass mainSensor;
 
-
 void setup(){
   mainMotor = new motor(mainArm);
   mainSensor.sensorSetup();
@@ -21,7 +20,7 @@ void setup(){
   mainMotor->motorSetup();
   receiver_setup();
   //mainArm.armTest();
-  //mainMotor->motorCheck();
+  //mainMotor->motorCheck(); 
 }
 
 void loop(){

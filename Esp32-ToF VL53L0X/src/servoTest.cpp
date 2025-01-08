@@ -3,9 +3,9 @@
 #include <wire.h>
 
 //Rover servo pins: yaw 17, grip 23, forwardback 16, pitch 4
-//Pitch max 55 ned, 170 max op ~85 midt
+//Pitch max 55 ned, 170 max op, ~85 midt
 //Yaw max 180 højre, 90 midt, 0 venstre
-//grip max 180 åben, MAX 109 lukket
+//grip max 180 åben, MAX 82 lukket
 //forwardBack max frem 160, max tilbage 80
 Servo myservo;
 int pos = 0;

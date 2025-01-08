@@ -19,7 +19,7 @@ bool buttonSwitchDetect(saved_channel_data joystick_data){
         if(buttonsPressed == true){ //Signal active debounce wait
             lastTime = millis();
         }
-        if(lastTime - startTime > 200){ 
+        if(lastTime - startTime > 100){ 
             controllerButtonPress = true;
             state = 2;
         }
@@ -31,7 +31,7 @@ bool buttonSwitchDetect(saved_channel_data joystick_data){
         else{
             endTime = millis();
         }
-        if(endTime - lastTime > 500){
+        if(endTime - lastTime > 75){
             state = 0;
         }
     }

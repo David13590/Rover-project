@@ -7,13 +7,13 @@ class armClass{
         servoClass servo_pitch1;
         servoClass servo_forwardBack2;
         servoClass servo_grip3;
-        const int yawDefault = 90, pitchDefault = 165, forwardBackDefault = 85, gripDefault = 81;
-        //int yawMax = 180, pitchMax = 170, forwardBackMax = 50,   gripMax = 81;
-        //int yawMin = 0,   pitchMin = 55,  forwardBackMin = 50,   gripMin = 81;
-        int yawPin = 17,  pitchPin = 4,   forwardBackPin = 16, gripPin = 23; //grippin moved from 23 to 32
+        const int yawDefault = 90, pitchDefault = 100, forwardBackDefault = 90, gripDefault = 81;
+        int yawPin = 17,  pitchPin = 4,   forwardBackPin = 16, gripPin = 23;
         int timer1 = 0, timer2 = 1, timer3 = 2, timer4 = 3;
 
     public:
+        const int yawMax = 180, pitchMax = 175, forwardBackMax = 200,   gripMax = 180;
+        const int yawMin = 0,   pitchMin = 50,  forwardBackMin = 86,   gripMin = 81;
         int yawCurrentPos = yawDefault;
         int pitchCurrentPos = pitchDefault;
         int forwardBackCurrentPos = forwardBackDefault;

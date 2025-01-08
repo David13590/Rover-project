@@ -150,10 +150,10 @@ void motor::runMotors(){
         SetRightMotorsSpeedBackward(4);
     }
 
-    myArm.yaw(myMotorPercent->servoYawTarget);
+    myArm.yaw(myArm.yawCurrentPos);
     myArm.pitch(myArm.pitchCurrentPos);
     myArm.forwardBack(myArm.forwardBackCurrentPos);
-    myArm.grip(myMotorPercent->servoGripTarget);
+    myArm.grip(myArm.gripCurrentPos);
 
     Serial.print("YawPos:");
     Serial.print(myArm.yawCurrentPos);

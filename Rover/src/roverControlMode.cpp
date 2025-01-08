@@ -75,41 +75,55 @@ decision::decisionReturnPercent mode_joystick_grip(saved_channel_data joystick_d
         myControlModeReturn.servoYawTarget = arm.yawCurrentPos + arm.decrement;
         arm.yawCurrentPos = myControlModeReturn.servoYawTarget;
     }
+    if(arm.yawCurrentPos < arm.yawMin){arm.yawCurrentPos = arm.yawMin;}
     if(joystick_data.joy2y < deadZoneMin){ //Yaw left
         Serial.print("Moving yaw");
         myControlModeReturn.servoYawTarget = arm.yawCurrentPos + arm.increment;
         arm.yawCurrentPos = myControlModeReturn.servoYawTarget;
     }
+    if(arm.yawCurrentPos > arm.yawMax){arm.yawCurrentPos = arm.yawMax;}
+
+
     if(joystick_data.joy1y > deadZoneMax){ //Pitch down
         Serial.print("Moving pitch");
         myControlModeReturn.servoPitchTarget = arm.pitchCurrentPos + arm.decrement;
         arm.pitchCurrentPos = myControlModeReturn.servoPitchTarget;
     }
+    if(arm.pitchCurrentPos > arm.pitchMax){arm.pitchCurrentPos = arm.pitchMax;}
     if(joystick_data.joy1y < deadZoneMin){ //Pitch up
         Serial.print("Moving pitch");
         myControlModeReturn.servoPitchTarget = arm.pitchCurrentPos + arm.increment;
         arm.pitchCurrentPos = myControlModeReturn.servoPitchTarget;
     }
+    if(arm.pitchCurrentPos < arm.pitchMin){arm.pitchCurrentPos = arm.pitchMin;}
+
+
     if(joystick_data.joy1x > deadZoneMax){ //ForwardBack
-        Serial.print("Moving ForwardBack");
-        myControlModeReturn.servoForwardBackTarget = arm.forwardBackCurrentPos + arm.decrement;
-        arm.forwardBackCurrentPos = myControlModeReturn.servoForwardBackTarget;
-    }
-    if(joystick_data.joy1x < deadZoneMin){ //ForwardBack
         Serial.print("Moving ForwardBack");
         myControlModeReturn.servoForwardBackTarget = arm.forwardBackCurrentPos + arm.increment;
         arm.forwardBackCurrentPos = myControlModeReturn.servoForwardBackTarget;
     }
+    if(arm.forwardBackCurrentPos > arm.forwardBackMax){arm.forwardBackCurrentPos = arm.forwardBackMax;}
+    if(joystick_data.joy1x < deadZoneMin){ //ForwardBack
+        Serial.print("Moving ForwardBack");
+        myControlModeReturn.servoForwardBackTarget = arm.forwardBackCurrentPos + arm.decrement;
+        arm.forwardBackCurrentPos = myControlModeReturn.servoForwardBackTarget;
+    }
+    if(arm.forwardBackCurrentPos < arm.forwardBackMin){arm.forwardBackCurrentPos = arm.forwardBackMin;}
+
+
     if(joystick_data.joy2x > deadZoneMax){ //Grip 
         Serial.print("Moving Grip");
         myControlModeReturn.servoGripTarget = arm.gripCurrentPos + arm.increment;
         arm.gripCurrentPos = myControlModeReturn.servoGripTarget;
     }
+    if(arm.gripCurrentPos > arm.gripMax){arm.gripCurrentPos = arm.gripMax;}
     if(joystick_data.joy2x < deadZoneMin){ //Grip
         Serial.print("Moving Grip");
         myControlModeReturn.servoGripTarget = arm.gripCurrentPos + arm.decrement;
         arm.gripCurrentPos = myControlModeReturn.servoGripTarget;
     }
+    if(arm.gripCurrentPos < arm.gripMin){arm.gripCurrentPos = arm.gripMin;}
     return myControlModeReturn;
 }
 
@@ -119,20 +133,20 @@ decision::decisionReturnPercent mode_joystick_driveAvoid(saved_channel_data joys
 }
 
 decision::decisionReturnPercent mode_sensorAvoid(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance){
-    //Højre motorsæt. Venstre sensor styre højre motorsæt
-    myControlModeReturn.motorPercentRight = motorPercentForward[4];
-    for(int i=3; i>=0; i--){
-        if(sensor_distance.sensorDistanceLeft < reactDistance[i]){
-            myControlModeReturn.motorPercentRight = motorPercentForward[i];
-        }  
-    } 
+        //Højre motorsæt. Venstre sensor styre højre motorsæt
+        myControlModeReturn.motorPercentRight = motorPercentForward[4];
+        for(int i=3; i>=0; i--){
+            if(sensor_distance.sensorDistanceLeft < reactDistance[i]){
+                myControlModeReturn.motorPercentRight = motorPercentForward[i];
+            }  
+        } 
 
-    //Venstre motor sæt. Højre sensor
-    myControlModeReturn.motorPercentLeft = motorPercentForward[4];
-    for(int i=3; i>=0; i--){
-        if(sensor_distance.sensorDistanceRight < reactDistance[i]){
-            myControlModeReturn.motorPercentLeft = motorPercentForward[i];
+        //Venstre motor sæt. Højre sensor
+        myControlModeReturn.motorPercentLeft = motorPercentForward[4];
+        for(int i=3; i>=0; i--){
+            if(sensor_distance.sensorDistanceRight < reactDistance[i]){
+                myControlModeReturn.motorPercentLeft = motorPercentForward[i];
+            }
         }
-    }
-    return myControlModeReturn; 
+    return myControlModeReturn;
 }
