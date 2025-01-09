@@ -4,10 +4,7 @@
 #include "roverControlMode.hpp"
 #include "arm.hpp"
 
-decision::decision(armClass& Arm): myArm{Arm}{
-
-}
-
+decision::decision(armClass& Arm): myArm{Arm}{}
 decision::decisionReturnPercent* decision::get_decision(){
     sensorClass::sensorReturnOutput& mainSensorOutput = mySensor.sensorRead(); //Get sensor readings
     saved_channel_data&  my_saved_channel_data = get_saved_channel_data(); //Get saved data from joystick

@@ -31,17 +31,15 @@ decision::decisionReturnPercent mode_disarmed(saved_channel_data joystick_data, 
     myControlModeReturn.motorPercentRight = motorPercentForward[0];
     myControlModeReturn.motorPercentLeft = motorPercentBackward[0];
     myControlModeReturn.motorPercentRight = motorPercentBackward[0];
-    return myControlModeReturn; //Should return two structs??; motorPercent and armServo data 
+    return myControlModeReturn;
 }
 
 decision::decisionReturnPercent mode_joystick_drive(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance){
     if(joystick_data.joy1x > deadZoneMax){
-        Serial.print("Forward");
         myControlModeReturn.motorPercentLeft = motorPercentForward[4];
         myControlModeReturn.motorPercentRight = motorPercentForward[4];
     }
     else if(joystick_data.joy1x < deadZoneMin){
-        Serial.print("Backward");
         myControlModeReturn.motorPercentLeft = motorPercentBackward[4];
         myControlModeReturn.motorPercentRight = motorPercentBackward[4];
     }
@@ -133,7 +131,7 @@ decision::decisionReturnPercent mode_joystick_driveAvoid(saved_channel_data joys
 }
 
 decision::decisionReturnPercent mode_sensorAvoid(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance){
-        //Højre motorsæt. Venstre sensor styre højre motorsæt
+        //Right motor pair. Left sensor
         myControlModeReturn.motorPercentRight = motorPercentForward[4];
         for(int i=3; i>=0; i--){
             if(sensor_distance.sensorDistanceLeft < reactDistance[i]){
@@ -141,7 +139,7 @@ decision::decisionReturnPercent mode_sensorAvoid(saved_channel_data joystick_dat
             }  
         } 
 
-        //Venstre motor sæt. Højre sensor
+        //Left motor pair. Right sensor
         myControlModeReturn.motorPercentLeft = motorPercentForward[4];
         for(int i=3; i>=0; i--){
             if(sensor_distance.sensorDistanceRight < reactDistance[i]){

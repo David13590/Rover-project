@@ -6,7 +6,7 @@ motor::motor(armClass& Arm): myArm{Arm}, myDecision{Arm}{}
 
 void motor::motorSetup(){ 
     int motorPins[] = {motorFL1, motorFR1, motorFL2, motorFR2, motorBL1, motorBL2, motorBR1, motorBR2};
-    int motorPinArrayLen = sizeof(motorPins)/sizeof(motorPins[0]); //Finder længden af pins array, sætter pins i array som output
+    int motorPinArrayLen = sizeof(motorPins)/sizeof(motorPins[0]); //Finds length of motorPins array and sets as output
     for(int i=0; i < motorPinArrayLen; i++){
         pinMode(motorPins[i], OUTPUT);
         analogWrite(motorPins[i], 0);
@@ -14,7 +14,7 @@ void motor::motorSetup(){
     Serial.println("Motor setup complete");
 }
 
-//Motor check for at se om motore virker og sidder rigtigt.
+//Test to check motor location and pin setup.
 void motor::motorCheck(){
     Serial.print("Running motor check. Stand by.\n");
     delay(2000);
@@ -45,7 +45,7 @@ void motor::motorCheck(){
 
   //decision percent 0, 25,  50,  75,  100   
 int motorSpeeds[] = {0, 160, 180, 200, 255};
-void motor::SetLeftMotorsSpeedForward(int speed){ //hastighed 0 1 2 eller 3 fra motorSpeeds array
+void motor::SetLeftMotorsSpeedForward(int speed){ //speed value 0, 1, 2, 3 from motorSpeeds array
     analogWrite(motorFL1, motorSpeeds[speed]);
     analogWrite(motorBL1, motorSpeeds[speed]);
 }
@@ -84,10 +84,10 @@ void motor::runMotors(){
     //Serial.print(" running motors    ");
     //FORWARD: left motors
     if (myMotorPercent->motorPercentLeft == 0){
-        SetRightMotorsSpeedForward(0); // 0 stop højre
+        SetRightMotorsSpeedForward(0); // 0 stop
     }
     else if (myMotorPercent->motorPercentLeft > 1){
-        SetRightMotorsSpeedForward(1); // 25 procent fart
+        SetRightMotorsSpeedForward(1); // 25
     }
     else if (myMotorPercent->motorPercentLeft > 25){
         SetRightMotorsSpeedForward(2); // 50

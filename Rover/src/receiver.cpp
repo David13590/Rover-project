@@ -50,15 +50,12 @@ saved_channel_data& get_saved_channel_data(){
 }
 
 void receiver_setup() {
-  // Set device as a Wi-Fi Station
-  WiFi.mode(WIFI_STA);
+  WiFi.mode(WIFI_STA); // Set device as a Wi-Fi Station
 
-  // Init ESP-NOW
-  if (esp_now_init() != ESP_OK) {
+  if (esp_now_init() != ESP_OK) { // Init ESP-NOW
     Serial.println("Error initializing ESP-NOW");
     return;
   }
-
   // Once ESPNow is successfully Init, we will register for recv CB to
   // get recv packer info
   esp_now_register_recv_cb(esp_now_recv_cb_t(OnDataRecv));
