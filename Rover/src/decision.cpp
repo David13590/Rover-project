@@ -13,6 +13,12 @@ decision::decisionReturnPercent* decision::get_decision(){
 
     currentRoverMode = mode_select(my_saved_channel_data, mainSensorOutput, currentRoverMode);
     Serial.print(currentRoverMode);
+    static int lastModeChangeTime = 0;
+    static int lastMode = 0;
+    if(lastMode !=currentRoverMode){
+        lastModeChangeTime = millis();
+        lastMode = currentRoverMode;
+    }
     switch (currentRoverMode){
     default://disarmed
         myMotorPercent = mode_disarmed(my_saved_channel_data, mainSensorOutput);
@@ -30,6 +36,11 @@ decision::decisionReturnPercent* decision::get_decision(){
     //     myMotorPercent = mode_joystick_driveAvoid(my_saved_channel_data, mainSensorOutput, readDecisionGesture);
     //     Serial.print("Mode: joystickDriveAvoid");
     //     break;
+    case sensorAvoidWait:
+        if(millis() - lastModeChangeTime > sensorAvoidStartDelay){
+            currentRoverMode = sensorAvoid;
+        }
+        break;
     case sensorAvoid:
         myMotorPercent = mode_sensorAvoid(my_saved_channel_data, mainSensorOutput);
         Serial.print("Mode: sensorAvoid  ");

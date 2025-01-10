@@ -131,6 +131,7 @@ decision::decisionReturnPercent mode_joystick_driveAvoid(saved_channel_data joys
 }
 
 decision::decisionReturnPercent mode_sensorAvoid(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance){
+        Serial.print("Running Avoid");
         //Right motor pair. Left sensor
         myControlModeReturn.motorPercentRight = motorPercentForward[4];
         for(int i=3; i>=0; i--){
@@ -145,6 +146,6 @@ decision::decisionReturnPercent mode_sensorAvoid(saved_channel_data joystick_dat
             if(sensor_distance.sensorDistanceRight < reactDistance[i]){
                 myControlModeReturn.motorPercentLeft = motorPercentForward[i];
             }
-        }
-    return myControlModeReturn;
+        }  
+   return myControlModeReturn;
 }

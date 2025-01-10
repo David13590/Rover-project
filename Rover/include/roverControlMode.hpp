@@ -18,10 +18,13 @@ enum roverControlMode{
     joystickDrive,
     joystickGrip,
     joystickDriveAvoid,
+    sensorAvoidWait,
     sensorAvoid,
 };
-const int roverControlModeEnumLength = 2;
+const int roverControlModeEnumLength = 5;
 static int currentRoverMode = 0;
+//static int controlModeStartMillis = millis();
+const int sensorAvoidStartDelay = 6000;
 const int deadZoneMin = 400;
 const int deadZoneMin2 = 100;
 const int deadZoneMax = 500;
