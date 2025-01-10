@@ -104,5 +104,5 @@ void loop() {
   Serial.print(channelValue.channel7);
   Serial.print(" buttonPCBRight: ");
   Serial.print(channelValue.channel8);
-  delay(50);
+  delay(32);
 }
