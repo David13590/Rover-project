@@ -155,7 +155,7 @@ void motor::runMotors(){
     myArm.forwardBack(myArm.forwardBackCurrentPos);
     myArm.grip(myArm.gripCurrentPos);
 
-    Serial.print("YawPos:");
+    Serial.print("  YawPos:");
     Serial.print(myArm.yawCurrentPos);
     Serial.print("  PitchPos:");
     Serial.print(myArm.pitchCurrentPos);

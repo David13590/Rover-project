@@ -8,7 +8,6 @@ decision::decision(armClass& Arm): myArm{Arm}{}
 decision::decisionReturnPercent* decision::get_decision(){
     sensorClass::sensorReturnOutput& mainSensorOutput = mySensor.sensorRead(); //Get sensor readings
     saved_channel_data&  my_saved_channel_data = get_saved_channel_data(); //Get saved data from joystick
-    
     //bool readDecisionGesture = decisionGesture.readGesture();
 
     currentRoverMode = mode_select(my_saved_channel_data, mainSensorOutput, currentRoverMode);
@@ -40,6 +39,8 @@ decision::decisionReturnPercent* decision::get_decision(){
         if(millis() - lastModeChangeTime > sensorAvoidStartDelay){
             currentRoverMode = sensorAvoid;
         }
+        Serial.print("Mode: sensorWait ");
+        Serial.print(millis() - lastModeChangeTime);
         break;
     case sensorAvoid:
         myMotorPercent = mode_sensorAvoid(my_saved_channel_data, mainSensorOutput);

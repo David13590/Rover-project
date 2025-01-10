@@ -6,7 +6,6 @@
 #include "buttonModeSwitch.hpp"
 #include "arm.hpp"
 
-static int gestureCount = 0;
 int motorPercentForward[] = {0, 25, 50, 75, 100};
 int motorPercentBackward[] = {-0, -25, -50, -75, -100};
 int reactDistance[] = {220, 250, 270, 350, 400}; //Distance if sensor reads value under, turn.
@@ -16,13 +15,27 @@ int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutpu
     int buttonsPressedReturn = 0;
     buttonsPressedReturn = buttonSwitchDetect(joystick_data);
     if(/* gesture == HIGH || */ buttonsPressedReturn == true){
-        gestureCount++;
-        currentRoverMode = gestureCount;
-    }
-    if(gestureCount > roverControlModeEnumLength){
-        gestureCount = 0;
-        currentRoverMode = gestureCount;
-    }
+        switch(currentRoverMode){
+        case disarmed: 
+            currentRoverMode = joystickDrive;
+            break;
+        case joystickDrive:
+            currentRoverMode = joystickGrip;
+            break;
+        case joystickGrip:
+            currentRoverMode = sensorAvoidWait;
+            break;
+        // case joystickDriveAvoid:
+        //     currentRoverMode = sensorAvoidWait;
+        //     break;
+        case sensorAvoidWait:
+            currentRoverMode = disarmed; 
+            break;
+        case sensorAvoid:
+            currentRoverMode = disarmed;
+        break;
+        }    
+    }    
     return currentRoverMode;
 }
 
