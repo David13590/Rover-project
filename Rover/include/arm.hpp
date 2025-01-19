@@ -7,7 +7,7 @@ class armClass{
         servoClass servo_pitch1;
         servoClass servo_forwardBack2;
         servoClass servo_grip3;
-        const int yawDefault = 90, pitchDefault = 100, forwardBackDefault = 90, gripDefault = 81;
+        const int yawDefault = 90, pitchDefault = 100, forwardBackDefault = 90, gripDefault = 180;
         int yawPin = 17,  pitchPin = 4,   forwardBackPin = 16, gripPin = 23;
         int timer1 = 0, timer2 = 1, timer3 = 2, timer4 = 3;
 

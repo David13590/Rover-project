@@ -14,7 +14,7 @@ decision::decisionReturnPercent* decision::get_decision(){
     Serial.print(currentRoverMode);
     static int lastModeChangeTime = 0;
     static int lastMode = 0;
-    if(lastMode !=currentRoverMode){
+    if(lastMode !=currentRoverMode){ //Start taking time when mode has changed
         lastModeChangeTime = millis();
         lastMode = currentRoverMode;
     }

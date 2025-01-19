@@ -8,7 +8,7 @@
 
 int motorPercentForward[] = {0, 25, 50, 75, 100};
 int motorPercentBackward[] = {-0, -25, -50, -75, -100};
-int reactDistance[] = {220, 250, 270, 350, 400}; //Distance if sensor reads value under, turn.
+int reactDistance[] = {350, 390, 420, 450, 460}; //Distance if sensor reads value under, turn.
 
 decision::decisionReturnPercent myControlModeReturn;
 int mode_select(saved_channel_data joystick_data, sensorClass::sensorReturnOutput sensor_distance, int currentRoverMode){
