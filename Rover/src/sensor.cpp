@@ -2,14 +2,11 @@
 #include <Wire.h>
 #include <VL53L0X.h>
 #include "sensor.hpp"
-
-
 VL53L0X sensor;
 VL53L0X sensor2;
 
-void sensorSetup(){
+void sensorClass::sensorSetup(){
     Serial.print("Running sensor setup. Stand by.\n");
-    
     pinMode(XshutSensor1, OUTPUT);
     pinMode(XshutSensor2, OUTPUT);
 
@@ -21,10 +18,10 @@ void sensorSetup(){
     Wire.begin();
     
     //Tænd sensor1
-    digitalWrite(XshutSensor1, HIGH); //Tænd en efter en og sæt adresse
+    digitalWrite(XshutSensor1, HIGH); //Turn on one by one
     delay(150);
     sensor.init(true);
-    sensor.setAddress((uint8_t)01); //Ny adresse
+    sensor.setAddress((uint8_t)01); //New adress
 
     //Tænd sensor2
     digitalWrite(XshutSensor2, HIGH);
@@ -34,27 +31,24 @@ void sensorSetup(){
 
     sensor.startContinuous(5);
     sensor2.startContinuous(5);
-
-    Serial.print("Sensor setup complete. \n");
-    
+    Serial.print("Sensor setup complete. \n");  
 }
 
-static sensorReturnOutput mySensorOutput;
-sensorReturnOutput* sensorRead(){
+static sensorClass::sensorReturnOutput mySensorOutput;
+sensorClass::sensorReturnOutput& sensorClass::sensorRead(){
     int distanceLeft = sensor.readRangeContinuousMillimeters();
     int distanceRight = sensor2.readRangeContinuousMillimeters();
 
-    Serial.print("DistanceLeft: ");
-    Serial.print(distanceLeft);
-    Serial.print("mm ");
+    // Serial.print("DistanceLeft: ");
+    // Serial.print(distanceLeft);
+    // Serial.print("mm ");
     
-    Serial.print("DistanceRight: ");
-    Serial.print(distanceRight);
-    Serial.print("mm ");
+    // Serial.print("DistanceRight: ");
+    // Serial.print(distanceRight);
+    // Serial.print("mm ");
 
 mySensorOutput.sensorDistanceLeft = distanceLeft;
 mySensorOutput.sensorDistanceRight = distanceRight;
-return &mySensorOutput;
+return mySensorOutput;
     
 }
-
